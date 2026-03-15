@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     template: "%s | Coffer Notes",
   },
   description: "UK small business finance, explained properly.",
+  icons: {
+    icon: "/icon.svg",
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://coffernotes.com"
   ),
