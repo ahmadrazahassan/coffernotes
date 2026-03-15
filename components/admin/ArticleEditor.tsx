@@ -35,6 +35,8 @@ import {
 const extensions = [
   StarterKit.configure({
     codeBlock: false,
+    link: false, // we add Link below with openOnClick: false
+    underline: false, // we add Underline below
   }),
   Link.configure({ openOnClick: false }),
   Image.configure({ allowBase64: true, inline: true }),

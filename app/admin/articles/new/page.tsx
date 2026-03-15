@@ -239,13 +239,18 @@ export default function NewArticlePage() {
               </div>
               
               {thumbnailUrl && (
-                <div className="mt-3 relative rounded-2xl overflow-hidden border border-neutral-100">
+                <div className="mt-3 relative rounded-2xl overflow-hidden border border-neutral-100 bg-neutral-50 aspect-video flex items-center justify-center min-h-[158px]">
+                  {/* unoptimized so any pasted URL works without next.config domain allowlist */}
                   <Image
                     src={thumbnailUrl}
                     alt="Thumbnail preview"
                     width={280}
                     height={158}
                     className="aspect-video object-cover w-full"
+                    unoptimized
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
                   />
                 </div>
               )}
