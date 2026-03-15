@@ -4,7 +4,11 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ClientVisibility } from "@/components/layout/ClientVisibility";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -28,7 +32,7 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://coffernotes.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com"
   ),
   openGraph: {
     title: "Coffer Notes",
@@ -49,9 +53,37 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${BASE_URL}/#organization`,
+    name: "Coffer Notes",
+    url: BASE_URL,
+    description:
+      "Independent UK small business finance publication. HMRC-referenced guides on accounting, payroll, tax, and more.",
+    sameAs: [],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Coffer Notes",
+    url: BASE_URL,
+    description: "UK small business finance, explained properly.",
+    publisher: { "@id": `${BASE_URL}/#organization` },
+    inLanguage: "en-GB",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/?q={search_term_string}` },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html lang="en">
       <body className={`${nunitoSans.variable} ${openSans.variable} font-sans antialiased`}>
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
         <ClientVisibility>
           <Navbar />
         </ClientVisibility>

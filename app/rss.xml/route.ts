@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://coffernotes.com";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
 
 function escapeXml(str: string): string {
   return str
@@ -14,27 +15,50 @@ function escapeXml(str: string): string {
 export async function GET() {
   const supabase = await createClient();
 
-  const { data: articles } = await supabase
-    .from("articles")
-    .select("title, slug, excerpt, published_at, category:categories(slug)")
-    .eq("status", "published")
-    .order("published_at", { ascending: false })
-    .limit(50);
+  const { data: junctions } = await supabase
+    .from("article_categories")
+    .select(
+      "article:articles(title, slug, excerpt, published_at, status), category:categories(slug)"
+    );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const items = (articles || [])
-    .map((a: any) => {
-      const catSlug = Array.isArray(a.category)
-        ? a.category[0]?.slug
-        : a.category?.slug;
-      return `    <item>
+  const bySlug = new Map<
+    string,
+    { title: string; slug: string; excerpt: string; published_at: string; catSlug: string }
+  >();
+  for (const row of (junctions || []) as any[]) {
+    const article = row?.article;
+    const category = row?.category;
+    if (
+      article?.status !== "published" ||
+      !article?.slug ||
+      !category?.slug ||
+      article.published_at == null
+    )
+      continue;
+    const key = article.slug;
+    if (!bySlug.has(key) || new Date(article.published_at) > new Date(bySlug.get(key)!.published_at))
+      bySlug.set(key, {
+        title: article.title,
+        slug: article.slug,
+        excerpt: article.excerpt || "",
+        published_at: article.published_at,
+        catSlug: category.slug,
+      });
+  }
+  const sorted = [...bySlug.values()].sort(
+    (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+  ).slice(0, 50);
+
+  const items = sorted
+    .map(
+      (a) => `    <item>
       <title>${escapeXml(a.title)}</title>
-      <link>${SITE_URL}/${catSlug}/${a.slug}</link>
+      <link>${SITE_URL}/${a.catSlug}/${a.slug}</link>
       <description>${escapeXml(a.excerpt || "")}</description>
       <pubDate>${new Date(a.published_at).toUTCString()}</pubDate>
-      <guid>${SITE_URL}/${catSlug}/${a.slug}</guid>
-    </item>`;
-    })
+      <guid>${SITE_URL}/${a.catSlug}/${a.slug}</guid>
+    </item>`
+    )
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

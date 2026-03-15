@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { CATEGORIES } from "@/lib/constants";
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+
 export const metadata: Metadata = {
   title: "About",
   description:
     "About Coffer Notes — a UK small business finance publication covering accounting, payroll, tax, and more.",
+  alternates: { canonical: `${BASE_URL}/about` },
 };
 
 export default function AboutPage() {

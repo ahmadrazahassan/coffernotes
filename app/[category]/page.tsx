@@ -9,6 +9,9 @@ interface Props {
   params: Promise<{ category: string }>;
 }
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;
   const supabase = await createClient();
@@ -20,9 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!category) return {};
 
+  const canonical = `${BASE_URL}/${slug}`;
+
   return {
     title: category.name,
     description: category.description,
+    alternates: { canonical },
+    openGraph: {
+      title: category.name,
+      description: category.description || undefined,
+      url: canonical,
+    },
   };
 }
 

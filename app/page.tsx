@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryArticlesBlock } from "@/components/home/CategoryArticlesBlock";
 import { LatestArticles } from "@/components/home/LatestArticles";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+
+export const metadata: Metadata = {
+  alternates: { canonical: BASE_URL },
+  openGraph: { url: BASE_URL },
+};
 
 export default function HomePage() {
   return (

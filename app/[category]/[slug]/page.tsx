@@ -6,6 +6,7 @@ import { ArticleContent } from "@/components/articles/ArticleContent";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { Separator } from "@/components/ui/separator";
+import { JsonLd } from "@/components/seo/JsonLd";
 import type { Article } from "@/types";
 
 interface Props {
@@ -23,21 +24,29 @@ async function getArticle(slug: string) {
   return data as Article | null;
 }
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { category: categorySlug, slug } = await params;
   const article = await getArticle(slug);
 
   if (!article) return {};
 
+  const canonical = `${BASE_URL}/${categorySlug}/${slug}`;
+
   return {
     title: article.meta_title || article.title,
     description: article.meta_description || article.excerpt,
+    alternates: { canonical },
     openGraph: {
       title: article.meta_title || article.title,
       description: article.meta_description || article.excerpt || "",
+      url: canonical,
       images: article.thumbnail_url ? [{ url: article.thumbnail_url }] : [],
       type: "article",
       publishedTime: article.published_at || undefined,
+      modifiedTime: (article as any).updated_at || undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -89,8 +98,37 @@ export default async function ArticlePage({ params }: Props) {
     related = relatedFiltered.slice(0, 3) as Article[];
   }
 
+  const categorySlugForUrl = (article.article_categories as any[])?.find(
+    (ac: any) => ac.category?.slug === categorySlug
+  )?.category?.slug || categorySlug;
+  const articleUrl = `${BASE_URL}/${categorySlugForUrl}/${article.slug}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.meta_description || article.excerpt,
+    image: article.thumbnail_url ? [article.thumbnail_url] : undefined,
+    datePublished: article.published_at,
+    dateModified: (article as any).updated_at || article.published_at,
+    author: {
+      "@type": "Person",
+      name: article.author_name,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+      name: "Coffer Notes",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+  };
+
   return (
     <>
+      <JsonLd data={articleSchema} />
       <article className="max-w-4xl mx-auto px-6 py-16">
         <ArticleHeader article={article} />
         <ArticleContent content={article.content} />
