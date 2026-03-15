@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CATEGORIES } from "@/lib/constants";
+import { Linkedin, Instagram } from "lucide-react";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
@@ -60,6 +61,33 @@ export default function AboutPage() {
         software or services, it&apos;s because we genuinely believe they help
         small businesses manage their finances more effectively.
       </p>
+
+      <h2 id="connect" className="text-2xl font-bold mt-12">Connect with us</h2>
+      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
+        Follow us for updates and more from Coffer Notes.
+      </p>
+      <div className="flex flex-wrap gap-4 mt-6">
+        <a
+          href="https://www.linkedin.com/in/abdul-rehman-ch-438049213"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium text-text-primary hover:bg-surface hover:border-text-secondary/30 transition-colors"
+          aria-label="LinkedIn"
+        >
+          <Linkedin className="h-5 w-5" />
+          LinkedIn
+        </a>
+        <a
+          href="https://www.instagram.com/arc.official01/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium text-text-primary hover:bg-surface hover:border-text-secondary/30 transition-colors"
+          aria-label="Instagram"
+        >
+          <Instagram className="h-5 w-5" />
+          Instagram
+        </a>
+      </div>
     </div>
   );
 }

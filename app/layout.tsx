@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     title: "Coffer Notes",
     description: "UK small business finance, explained properly.",
   },
-  // Impact / Clarity site verification (not visible to users)
+  // Impact site verification: paste in <head> per verifier instructions
   other: {
-    "Impact-Site-Verification": "50563464-78db-477c-ada3-5172815b9e6f",
+    "impact-site-verification": "50563464-78db-477c-ada3-5172815b9e6f",
   },
 };
 
