@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,6 +17,7 @@ import { slugify, calculateReadTime } from "@/lib/utils";
 import { toast } from "sonner";
 import type { Category } from "@/types";
 import Image from "next/image";
+import { Upload } from "lucide-react";
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -34,6 +35,32 @@ export default function NewArticlePage() {
   const [publishDate, setPublishDate] = useState<string>("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
+  const [importDragOver, setImportDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImportHtml = (file: File) => {
+    if (file.type !== "text/html" && !file.name.toLowerCase().endsWith(".html")) {
+      toast.error("Please select an HTML file (.html).");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const html = e.target?.result as string;
+      if (html) {
+        setContent(html);
+        toast.success("HTML imported. You can edit below.");
+      }
+    };
+    reader.onerror = () => toast.error("Failed to read file.");
+    reader.readAsText(file);
+  };
+
+  const onImportDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setImportDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) handleImportHtml(file);
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -178,6 +205,42 @@ export default function NewArticlePage() {
             rows={3}
             className="text-lg bg-white border border-neutral-200 px-5 py-4 rounded-2xl text-neutral-600 placeholder:text-neutral-400 focus-visible:ring-1 focus-visible:ring-neutral-900 shadow-sm resize-none w-full max-w-2xl"
           />
+
+          {/* Import HTML — drag & drop or click to upload */}
+          <div className="rounded-2xl border border-neutral-200 bg-neutral-50/50 p-4">
+            <p className="text-sm font-medium text-neutral-900 mb-3">Import HTML</p>
+            <div
+              className={`rounded-xl border-2 border-dashed p-8 text-center transition-colors cursor-pointer min-h-[120px] flex flex-col items-center justify-center gap-2 ${
+                importDragOver
+                  ? "border-neutral-400 bg-neutral-100"
+                  : "border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300"
+              }`}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setImportDragOver(true);
+              }}
+              onDragLeave={() => setImportDragOver(false)}
+              onDrop={onImportDrop}
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <Upload className="h-8 w-8 text-neutral-400" />
+              <span className="text-sm text-neutral-600">
+                Drag and drop an HTML file here, or click to upload
+              </span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".html,text/html"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleImportHtml(file);
+                  e.target.value = "";
+                }}
+              />
+            </div>
+          </div>
+
           <div className="mt-4">
             <ArticleEditor content={content} onChange={setContent} />
           </div>

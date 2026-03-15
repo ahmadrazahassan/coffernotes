@@ -14,7 +14,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo />
             <p className="text-sm text-text-secondary mt-4 leading-relaxed max-w-xs">
-              Independent editorial publication covering UK small business finance. HMRC-referenced. No sponsored content.
+              Independent editorial publication covering UK small business finance. HMRC-referenced.
             </p>
           </div>
 
@@ -84,7 +84,7 @@ export function Footer() {
             </h4>
             <SubscribeForm compact />
             <p className="text-[11px] text-text-secondary mt-3 leading-relaxed">
-              One article per email. No promotions. Unsubscribe anytime.
+              Weekly articles by email. Unsubscribe anytime.
             </p>
           </div>
         </div>

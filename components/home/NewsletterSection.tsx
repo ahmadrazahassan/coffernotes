@@ -13,7 +13,7 @@ export function NewsletterSection() {
               New articles, straight to your inbox
             </h2>
             <p className="text-sm text-text-secondary mt-2 leading-relaxed">
-              We publish weekly. One email per article. No promotions, no third-party content, no noise. Unsubscribe in one click.
+              We publish weekly. One email per article. Unsubscribe anytime.
             </p>
           </div>
           <div className="lg:col-span-7 lg:pl-8 lg:border-l lg:border-border">
