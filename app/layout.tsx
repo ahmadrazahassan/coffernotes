@@ -46,6 +46,10 @@ export const metadata: Metadata = {
     title: "Coffer Notes",
     description: "UK small business finance, explained properly.",
   },
+  // Impact / Clarity site verification (not visible to users)
+  other: {
+    "Impact-Site-Verification": "50563464-78db-477c-ada3-5172815b9e6f",
+  },
 };
 
 export default function RootLayout({
@@ -82,6 +86,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${nunitoSans.variable} ${openSans.variable} font-sans antialiased`}>
+        {/* Impact site verification — first body section for verifier crawl */}
+        <span className="sr-only" aria-hidden="true">
+          Impact-Site-Verification: 50563464-78db-477c-ada3-5172815b9e6f
+        </span>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <ClientVisibility>
