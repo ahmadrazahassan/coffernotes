@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
+import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
 import { formatDate } from "@/lib/utils";
@@ -54,6 +55,8 @@ export async function LatestArticles() {
                     alt={highlight.title}
                     width={600}
                     height={400}
+                    quality={THUMBNAIL_IMAGE_QUALITY}
+                    sizes="(max-width: 1024px) 100vw, 600px"
                     className="w-full aspect-[3/2] object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
@@ -127,8 +130,10 @@ export async function LatestArticles() {
                     <Image
                       src={article.thumbnail_url}
                       alt={article.title}
-                      width={120}
-                      height={80}
+                      width={240}
+                      height={160}
+                      quality={THUMBNAIL_IMAGE_QUALITY}
+                      sizes="128px"
                       className="w-32 h-24 object-cover flex-shrink-0 group-hover:scale-[1.03] transition-transform duration-300"
                     />
                   ) : (

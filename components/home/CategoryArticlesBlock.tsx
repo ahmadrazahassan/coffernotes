@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
+import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
 import { formatDate } from "@/lib/utils";
 import type { Article } from "@/types";
@@ -72,8 +73,8 @@ export async function CategoryArticlesBlock({
                   alt={lead.title}
                   width={1200}
                   height={675}
-                  quality={100}
-                  unoptimized={true}
+                  quality={THUMBNAIL_IMAGE_QUALITY}
+                  sizes="(max-width: 1024px) 100vw, 1200px"
                   className="w-full aspect-video object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 />
               ) : (
@@ -111,10 +112,10 @@ export async function CategoryArticlesBlock({
                       <Image
                         src={article.thumbnail_url}
                         alt={article.title}
-                        width={480}
-                        height={320}
-                        quality={100}
-                        unoptimized={true}
+                        width={384}
+                        height={256}
+                        quality={THUMBNAIL_IMAGE_QUALITY}
+                        sizes="(max-width: 768px) 128px, 256px"
                         className="w-32 h-24 object-cover group-hover:scale-[1.03] transition-transform duration-500"
                       />
                     ) : (

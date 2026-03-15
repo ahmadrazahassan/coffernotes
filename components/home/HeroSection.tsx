@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
+import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
 import { formatDate } from "@/lib/utils";
@@ -88,6 +89,8 @@ export async function HeroSection() {
                     alt={lead.title}
                     width={960}
                     height={540}
+                    quality={THUMBNAIL_IMAGE_QUALITY}
+                    sizes="(max-width: 1024px) 100vw, 960px"
                     className="w-full aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                     priority
                   />
@@ -168,6 +171,8 @@ export async function HeroSection() {
                     alt={sidebar.title}
                     width={400}
                     height={225}
+                    quality={THUMBNAIL_IMAGE_QUALITY}
+                    sizes="(max-width: 1024px) 33vw, 400px"
                     className="w-full aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 ) : (
