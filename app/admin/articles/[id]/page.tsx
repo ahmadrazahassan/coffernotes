@@ -336,6 +336,25 @@ export default function EditArticlePage({
               </label>
             </div>
 
+            <div>
+              <label className="text-sm font-medium text-neutral-900 mb-1.5 block">
+                Publish date (optional)
+              </label>
+              <Input
+                type="date"
+                value={publishedAt ? publishedAt.slice(0, 10) : ""}
+                onChange={(e) =>
+                  setPublishedAt(
+                    e.target.value ? new Date(e.target.value).toISOString() : null
+                  )
+                }
+                className="rounded-2xl h-11 bg-neutral-50/50 border-neutral-200 text-neutral-900 focus-visible:ring-1 focus-visible:ring-neutral-900 focus-visible:border-neutral-900 focus-visible:bg-white transition-all shadow-none"
+              />
+              <p className="text-xs text-neutral-500 mt-1">
+                Changing this will update the date shown on the site and in feeds.
+              </p>
+            </div>
+
             <div className="h-px bg-neutral-100 my-2" />
 
             <div>

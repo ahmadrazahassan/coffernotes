@@ -16,14 +16,23 @@ export function LoadMoreButton({ categoryId }: { categoryId: string }) {
     setLoading(true);
     const supabase = createClient();
     const { data } = await supabase
-      .from("articles")
-      .select("*, category:categories(*)")
+      .from("article_categories")
+      .select(
+        `
+          article:articles (
+            *,
+            article_categories(category:categories(*))
+          )
+        `
+      )
       .eq("category_id", categoryId)
-      .eq("status", "published")
-      .order("published_at", { ascending: false })
+      .eq("article.status", "published")
+      .order("article(published_at)", { ascending: false })
       .range(offset, offset + 11);
 
-    const items = (data as Article[]) || [];
+    const items =
+      (data?.map((j: any) => j.article).filter(Boolean) as Article[]) || [];
+
     setArticles((prev) => [...prev, ...items]);
     setOffset((prev) => prev + items.length);
     if (items.length < 12) setHasMore(false);

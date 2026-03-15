@@ -40,15 +40,24 @@ export default async function CategoryPage({ params }: Props) {
 
   const cat = category as Category;
 
-  const { data: articles } = await supabase
-    .from("articles")
-    .select("*, category:categories(*)")
+  // Articles are linked to categories via the article_categories junction table
+  const { data: junctions } = await supabase
+    .from("article_categories")
+    .select(
+      `
+        article:articles (
+          *,
+          article_categories(category:categories(*))
+        )
+      `
+    )
     .eq("category_id", cat.id)
-    .eq("status", "published")
-    .order("published_at", { ascending: false })
+    .eq("article.status", "published")
+    .order("article(published_at)", { ascending: false })
     .range(0, 11);
 
-  const items = (articles as Article[]) || [];
+  const items =
+    (junctions?.map((j: any) => j.article).filter(Boolean) as Article[]) || [];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-20">

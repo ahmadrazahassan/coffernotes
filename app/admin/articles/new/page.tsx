@@ -31,6 +31,7 @@ export default function NewArticlePage() {
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [authorName, setAuthorName] = useState("Editorial Team");
   const [featured, setFeatured] = useState(false);
+  const [publishDate, setPublishDate] = useState<string>("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
 
@@ -69,6 +70,14 @@ export default function NewArticlePage() {
     const supabase = createClient();
     const slug = slugify(title);
 
+    let publishedAt: string | null = null;
+    if (status === "published") {
+      // If an explicit publish date is chosen, respect it; otherwise use now.
+      publishedAt = publishDate
+        ? new Date(publishDate).toISOString()
+        : new Date().toISOString();
+    }
+
     const articleData = {
       title,
       slug,
@@ -81,8 +90,7 @@ export default function NewArticlePage() {
       read_time: readTime,
       meta_title: metaTitle || null,
       meta_description: metaDescription || null,
-      published_at:
-        status === "published" ? new Date().toISOString() : null,
+      published_at: publishedAt,
     };
 
     const { data: article, error } = await supabase
@@ -276,6 +284,21 @@ export default function NewArticlePage() {
               <label htmlFor="featured" className="text-sm font-medium text-neutral-900 cursor-pointer select-none">
                 Featured article
               </label>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-neutral-900 mb-1.5 block">
+                Publish date (optional)
+              </label>
+              <Input
+                type="date"
+                value={publishDate}
+                onChange={(e) => setPublishDate(e.target.value)}
+                className="rounded-2xl h-11 bg-neutral-50/50 border-neutral-200 text-neutral-900 focus-visible:ring-1 focus-visible:ring-neutral-900 focus-visible:border-neutral-900 focus-visible:bg-white transition-all shadow-none"
+              />
+              <p className="text-xs text-neutral-500 mt-1">
+                If left blank, the article will use the moment you publish as the date.
+              </p>
             </div>
 
             <div className="h-px bg-neutral-100 my-2" />
