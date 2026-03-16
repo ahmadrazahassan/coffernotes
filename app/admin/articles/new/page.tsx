@@ -14,6 +14,7 @@ import {
 import { ArticleEditor } from "@/components/admin/ArticleEditor";
 import { createClient } from "@/lib/supabase/client";
 import { slugify, calculateReadTime } from "@/lib/utils";
+import { normalizeImportedHtml } from "@/lib/normalizeImportedHtml";
 import { toast } from "sonner";
 import type { Category } from "@/types";
 import Image from "next/image";
@@ -45,10 +46,11 @@ export default function NewArticlePage() {
     }
     const reader = new FileReader();
     reader.onload = (e) => {
-      const html = e.target?.result as string;
-      if (html) {
-        setContent(html);
-        toast.success("HTML imported. You can edit below.");
+      const raw = e.target?.result as string;
+      if (raw) {
+        const normalized = normalizeImportedHtml(raw);
+        setContent(normalized);
+        toast.success("HTML imported. You can edit in the Visual or HTML editor below.");
       }
     };
     reader.onerror = () => toast.error("Failed to read file.");

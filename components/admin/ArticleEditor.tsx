@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useCallback, useState } from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { useEditor, EditorContent } from "@tiptap/react";
@@ -58,6 +58,7 @@ interface ArticleEditorProps {
 export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
   const activeTabRef = useRef<string>("visual");
   const htmlRef = useRef(content);
+  const [htmlValue, setHtmlValue] = useState(content);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -67,6 +68,7 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
       if (activeTabRef.current === "visual") {
         const html = e.getHTML();
         htmlRef.current = html;
+        setHtmlValue(html);
         onChange(html);
       }
     },
@@ -77,23 +79,32 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
     },
   });
 
+  // Sync when parent updates content (e.g. after Import HTML) so Visual and HTML tab show it
+  useEffect(() => {
+    if (content === htmlRef.current || !editor) return;
+    htmlRef.current = content;
+    setHtmlValue(content);
+    editor.commands.setContent(content, false);
+  }, [content, editor]);
+
   const handleTabChange = useCallback(
     (tab: string) => {
       activeTabRef.current = tab;
       if (tab === "visual" && editor) {
         editor.commands.setContent(htmlRef.current);
       }
+      if (tab === "html" && editor) {
+        setHtmlValue(editor.getHTML());
+      }
     },
     [editor]
   );
 
-  const handleHtmlChange = useCallback(
-    (value: string) => {
-      htmlRef.current = value;
-      onChange(value);
-    },
-    [onChange]
-  );
+  const handleHtmlChange = useCallback((value: string) => {
+    htmlRef.current = value;
+    setHtmlValue(value);
+    onChange(value);
+  }, [onChange]);
 
   const ToolbarButton = ({
     onClick,
@@ -318,7 +329,7 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
         <TabsContent value="html" className="mt-0 bg-white">
           <textarea
             className="w-full min-h-[500px] p-8 font-mono text-sm border-0 focus:outline-none resize-none bg-white text-neutral-800 selection:bg-neutral-200"
-            value={htmlRef.current}
+            value={htmlValue}
             onChange={(e) => handleHtmlChange(e.target.value)}
             spellCheck={false}
           />
