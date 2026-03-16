@@ -3,10 +3,10 @@ import DOMPurify from "isomorphic-dompurify";
 /**
  * Sanitize config aligned with ArticleContent so imported HTML renders correctly on the site.
  */
-const SANITIZE_CONFIG = {
+const SANITIZE_CONFIG: { ADD_TAGS: string[]; ADD_ATTR: string[] } = {
   ADD_TAGS: ["table", "thead", "tbody", "tr", "th", "td"],
   ADD_ATTR: ["class", "colspan", "rowspan", "style"],
-} as const;
+};
 
 /**
  * Normalizes HTML imported from a file (e.g. full document or fragment) so it works

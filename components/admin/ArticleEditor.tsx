@@ -84,7 +84,7 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
     if (content === htmlRef.current || !editor) return;
     htmlRef.current = content;
     setHtmlValue(content);
-    editor.commands.setContent(content, false);
+    editor.commands.setContent(content, { emitUpdate: false });
   }, [content, editor]);
 
   const handleTabChange = useCallback(
