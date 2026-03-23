@@ -4,24 +4,20 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`}>
       <svg
-        width="28"
-        height="24"
-        viewBox="0 0 28 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="currentColor"
         aria-hidden="true"
       >
-        {/* Left page */}
-        <path d="M14 4L3 6v14l11-2" />
-        {/* Right page */}
-        <path d="M14 4l11 2v14l-11-2" />
-        {/* Spine */}
-        <path d="M14 4v16" />
+        {/* Crestwell emblem: flowing crest form with precision cut */}
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M3.1 13.2c0-5.3 3.7-8.9 7.2-9.6 2.8-.6 4.6 1.8 5 4.8.3 2.8.4 6.1.8 8.3.3 1.9 1 3.3 2.5 4.3.6.4.7 1.2.2 1.7-2.1 1.9-6 1.8-9 .4-3.7-1.8-6.7-5-6.7-10Zm11 2.2c.6-2.5 2.4-4.6 4.8-5.6 1-.4 2 .5 1.8 1.5-.6 3.4-2.5 6.6-5.4 8.2-1 .6-2.2-.1-2.2-1.2 0-.9.4-1.9 1-2.9Z"
+        />
       </svg>
-      <span className="text-lg tracking-tight font-extrabold">Crestwell</span>
+      <span className="text-[17px] font-bold tracking-[0.04em]">Crestwell</span>
     </Link>
   );
 }

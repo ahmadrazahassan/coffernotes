@@ -2,7 +2,7 @@ import { SubscribeForm } from "@/components/shared/SubscribeForm";
 
 export function NewsletterSection() {
   return (
-    <section className="py-16 bg-surface border-y border-border">
+    <section id="newsletter" className="py-16 bg-surface border-y border-border">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5">

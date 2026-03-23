@@ -6,29 +6,30 @@ import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-14">
-          {/* Brand — 4 cols */}
+    <footer className="mt-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50/80 px-6 py-12 md:px-8">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo />
-            <p className="text-sm text-text-secondary mt-4 leading-relaxed max-w-xs">
-              Crestwell publishes practical UK finance guidance for growing businesses, with editorial standards aligned to HMRC and GOV.UK sources.
+            <Logo className="text-neutral-950" />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-700">
+              Crestwell delivers practical UK finance guidance for business owners, finance teams, and compliance-led operations.
+            </p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
+              Editorial content is built using HMRC and GOV.UK references, with Sage product naming kept accurate for professional review.
             </p>
           </div>
 
-          {/* Topics — 2 cols */}
-          <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-text-secondary mb-4">
+          <div className="lg:col-span-3">
+            <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-neutral-500">
               Topics
             </h4>
-            <div className="flex flex-col gap-2.5">
+            <div className="grid grid-cols-1 gap-2">
               {CATEGORIES.map((cat) => (
                 <Link
                   key={cat.slug}
                   href={`/${cat.slug}`}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                  className="text-sm text-neutral-700 hover:text-neutral-950"
                 >
                   {cat.name}
                 </Link>
@@ -36,62 +37,72 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Company — 2 cols */}
           <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-text-secondary mb-4">
-              Company
+            <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-neutral-500">
+              Governance
             </h4>
-            <div className="flex flex-col gap-2.5">
-              <Link href="/about" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
+            <div className="flex flex-col gap-2">
+              <Link href="/about" className="text-sm text-neutral-700 hover:text-neutral-950">
                 About
               </Link>
+              <Link href="/about#editorial" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Editorial Standards
+              </Link>
+              <Link href="/about" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Privacy Policy
+              </Link>
+              <Link href="/about" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Terms of Use
+              </Link>
+              <Link href="/rss.xml" className="text-sm text-neutral-700 hover:text-neutral-950">
+                RSS Feed
+              </Link>
+              <Link href="/sitemap.xml" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Sitemap
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-3">
+            <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-neutral-500">
+              Contact
+            </h4>
+            <div className="flex flex-col gap-3">
               <a
                 href="mailto:editorial@crestwell.co.uk"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 text-sm text-neutral-700 hover:text-neutral-950"
                 aria-label="Email"
               >
                 <Mail className="h-4 w-4" />
                 editorial@crestwell.co.uk
               </a>
-              <Link href="/about#editorial" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
-                Editorial Policy
-              </Link>
-              <Link href="/about#contact" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
-                Contact
-              </Link>
-              <Link href="/rss.xml" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
-                RSS Feed
-              </Link>
+              <p className="text-sm leading-relaxed text-neutral-600">
+                For content corrections, compliance clarifications, or partnership enquiries, contact the editorial desk.
+              </p>
             </div>
           </div>
-
-          {/* Newsletter — 4 cols */}
-          <div className="lg:col-span-4">
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-text-secondary mb-4">
-              Weekly articles by email
-            </h4>
-            <SubscribeForm compact />
-            <p className="text-[11px] text-text-secondary mt-3 leading-relaxed">
-              Weekly briefings for finance leads and business owners. Unsubscribe anytime.
-            </p>
           </div>
-        </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-border py-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[11px] text-text-secondary">
+          <div className="mt-10 border-t border-neutral-200 py-6">
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <p className="text-xs text-neutral-700">
+                Weekly finance briefings by email.
+              </p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Built for founders, finance managers, and operations leaders. Unsubscribe anytime.
+              </p>
+            </div>
+            <div className="w-full max-w-md">
+              <SubscribeForm compact />
+            </div>
+          </div>
+          </div>
+
+          <div className="border-t border-neutral-200 py-5">
+          <p className="text-xs text-neutral-500">
             &copy; {new Date().getFullYear()} Crestwell. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <Link href="/about" className="text-[11px] text-text-secondary hover:text-text-primary transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/about" className="text-[11px] text-text-secondary hover:text-text-primary transition-colors">
-              Terms of Use
-            </Link>
-            <Link href="/sitemap.xml" className="text-[11px] text-text-secondary hover:text-text-primary transition-colors">
-              Sitemap
-            </Link>
           </div>
         </div>
       </div>
