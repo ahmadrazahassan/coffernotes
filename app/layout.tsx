@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk"
   ),
   openGraph: {
     title: "Crestwell",

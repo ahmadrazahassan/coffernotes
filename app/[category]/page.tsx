@@ -10,7 +10,7 @@ interface Props {
 }
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;

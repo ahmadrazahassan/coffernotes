@@ -6,7 +6,7 @@ import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
 
 export const metadata: Metadata = {
   alternates: { canonical: BASE_URL },

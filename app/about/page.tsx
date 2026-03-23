@@ -3,7 +3,7 @@ import { CATEGORIES } from "@/lib/constants";
 import { Mail } from "lucide-react";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
 
 export const metadata: Metadata = {
   title: "About",
@@ -73,12 +73,12 @@ export default function AboutPage() {
       </p>
       <div className="flex flex-wrap gap-4 mt-6">
         <a
-          href="mailto:editorial@crestwell.co.uk"
+          href="mailto:info@crestwell.uk"
           className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium text-text-primary hover:bg-surface hover:border-text-secondary/30 transition-colors"
           aria-label="Email"
         >
           <Mail className="h-5 w-5" />
-          editorial@crestwell.co.uk
+          info@crestwell.uk
         </a>
       </div>
     </div>

@@ -86,7 +86,7 @@ Create `.env.local` in the project root:
 NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
-NEXT_PUBLIC_SITE_URL=https://crestwell.co.uk
+NEXT_PUBLIC_SITE_URL=https://crestwell.uk
 ```
 
 ### 3) Initialize database

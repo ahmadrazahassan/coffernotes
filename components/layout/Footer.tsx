@@ -69,12 +69,12 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:editorial@crestwell.co.uk"
+                href="mailto:info@crestwell.uk"
                 className="inline-flex items-center gap-2 text-sm text-neutral-700 hover:text-neutral-950"
                 aria-label="Email"
               >
                 <Mail className="h-4 w-4" />
-                editorial@crestwell.co.uk
+                info@crestwell.uk
               </a>
               <p className="text-sm leading-relaxed text-neutral-600">
                 For content corrections, compliance clarifications, or partnership enquiries, contact the editorial desk.
