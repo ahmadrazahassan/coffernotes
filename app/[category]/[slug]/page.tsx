@@ -25,7 +25,7 @@ async function getArticle(slug: string) {
 }
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: categorySlug, slug } = await params;
@@ -118,7 +118,7 @@ export default async function ArticlePage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "Coffer Notes",
+      name: "Crestwell",
     },
     mainEntityOfPage: {
       "@type": "WebPage",

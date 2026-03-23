@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
 
 function escapeXml(str: string): string {
   return str
@@ -64,7 +64,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Coffer Notes</title>
+    <title>Crestwell</title>
     <link>${SITE_URL}</link>
     <description>UK small business finance, explained properly.</description>
     <language>en-gb</language>

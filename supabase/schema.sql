@@ -1,5 +1,5 @@
 -- =============================================
--- Coffer Notes — Supabase Database Schema
+-- Crestwell — Supabase Database Schema
 -- Run this in your Supabase SQL Editor
 -- =============================================
 
@@ -66,9 +66,6 @@ CREATE TABLE subscribers (
 -- =============================================
 -- Indexes (optimise common query patterns)
 -- =============================================
-
--- Articles: filter by status + sort by published_at (homepage, category pages, RSS, sitemap)
-CREATE INDEX idx_articles_status_published ON articles (status, published_at DESC);
 
 -- Articles: filter by status + sort by published_at (homepage, category pages, RSS, sitemap)
 CREATE INDEX idx_articles_status_published ON articles (status, published_at DESC);
@@ -259,78 +256,8 @@ CREATE POLICY "Authenticated users can delete article images"
 -- =============================================
 -- Admin User Setup
 -- =============================================
-
--- Create the admin user (quadcore0022@gmail.com / Allahis001@)
-DO $$
-DECLARE
-  admin_uid UUID := gen_random_uuid();
-  admin_email TEXT := 'quadcore0022@gmail.com';
-  -- Use crypt() to hash the password properly for Supabase Auth
-  admin_pass TEXT := crypt('Allahis001@', gen_salt('bf'));
-BEGIN
-  -- Only insert if the user doesn't already exist
-  IF NOT EXISTS (SELECT 1 FROM auth.users WHERE email = admin_email) THEN
-    -- Insert into auth.users 
-    INSERT INTO auth.users (
-      instance_id,
-      id,
-      aud,
-      role,
-      email,
-      encrypted_password,
-      email_confirmed_at,
-      recovery_sent_at,
-      last_sign_in_at,
-      raw_app_meta_data,
-      raw_user_meta_data,
-      created_at,
-      updated_at,
-      confirmation_token,
-      email_change,
-      email_change_token_new,
-      recovery_token
-    )
-    VALUES (
-      '00000000-0000-0000-0000-000000000000',
-      admin_uid,
-      'authenticated',
-      'authenticated',
-      admin_email,
-      admin_pass,
-      now(),
-      now(),
-      now(),
-      '{"provider":"email","providers":["email"]}',
-      '{"is_admin":true}',
-      now(),
-      now(),
-      '',
-      '',
-      '',
-      ''
-    );
-
-    -- Insert into auth.identities
-    INSERT INTO auth.identities (
-      id,
-      user_id,
-      identity_data,
-      provider,
-      provider_id,
-      last_sign_in_at,
-      created_at,
-      updated_at
-    )
-    VALUES (
-      gen_random_uuid(),
-      admin_uid,
-      format('{"sub":"%s","email":"%s"}', admin_uid::text, admin_email)::jsonb,
-      'email',
-      admin_email,
-      now(),
-      now(),
-      now()
-    );
-  END IF;
-END $$;
+--
+-- For production, create admin users in Supabase Dashboard:
+-- Authentication -> Users -> Add User.
+-- Do not commit hardcoded credentials in SQL files.
 

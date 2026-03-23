@@ -1,8 +1,8 @@
-# Coffer Notes
+# Crestwell
 
 **UK small business finance, explained properly.**
 
-Coffer Notes is a B2B editorial article platform built for publishing long-form finance guides aimed at UK small business owners. It covers accounting, invoicing, payroll, people management, financial reporting, and tax compliance.
+Crestwell is a B2B editorial article platform built for publishing long-form finance guides aimed at UK small business owners. It covers accounting, invoicing, payroll, people management, financial reporting, and tax compliance.
 
 ---
 
@@ -24,7 +24,7 @@ Coffer Notes is a B2B editorial article platform built for publishing long-form 
 ## Project Structure
 
 ```
-coffer-notes/
+crestwell/
 ├── app/
 │   ├── layout.tsx                          # Root layout (Inter font, metadata, nav, footer)
 │   ├── page.tsx                            # Homepage (8 sections)
@@ -115,7 +115,7 @@ Copy the `.env.local` file and fill in your Supabase credentials:
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-NEXT_PUBLIC_SITE_URL=https://coffernotes.com
+NEXT_PUBLIC_SITE_URL=https://crestwell.co.uk
 ```
 
 ### 3. Set up the database

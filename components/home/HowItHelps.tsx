@@ -11,7 +11,7 @@ export function HowItHelps() {
               How we research and write every article
             </h2>
             <p className="text-sm text-text-secondary mt-3 leading-relaxed">
-              Coffer Notes exists to give UK business owners finance guidance they can act on. Every article follows the same editorial process.
+              Crestwell exists to give UK business owners finance guidance they can act on. Every article follows the same editorial process.
             </p>
           </div>
 

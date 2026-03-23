@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { CATEGORIES } from "@/lib/constants";
 import { SubscribeForm } from "@/components/shared/SubscribeForm";
-import { Linkedin, Instagram } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -14,7 +14,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo />
             <p className="text-sm text-text-secondary mt-4 leading-relaxed max-w-xs">
-              Independent editorial publication covering UK small business finance. HMRC-referenced.
+              Crestwell publishes practical UK finance guidance for growing businesses, with editorial standards aligned to HMRC and GOV.UK sources.
             </p>
           </div>
 
@@ -46,24 +46,12 @@ export function Footer() {
                 About
               </Link>
               <a
-                href="https://www.linkedin.com/in/abdul-rehman-ch-438049213"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:editorial@crestwell.co.uk"
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-2"
-                aria-label="LinkedIn"
+                aria-label="Email"
               >
-                <Linkedin className="h-4 w-4" />
-                LinkedIn
-              </a>
-              <a
-                href="https://www.instagram.com/arc.official01/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-2"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-4 w-4" />
-                Instagram
+                <Mail className="h-4 w-4" />
+                editorial@crestwell.co.uk
               </a>
               <Link href="/about#editorial" className="text-sm text-text-secondary hover:text-text-primary transition-colors">
                 Editorial Policy
@@ -84,7 +72,7 @@ export function Footer() {
             </h4>
             <SubscribeForm compact />
             <p className="text-[11px] text-text-secondary mt-3 leading-relaxed">
-              Weekly articles by email. Unsubscribe anytime.
+              Weekly briefings for finance leads and business owners. Unsubscribe anytime.
             </p>
           </div>
         </div>
@@ -92,7 +80,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-border py-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-[11px] text-text-secondary">
-            &copy; {new Date().getFullYear()} Coffer Notes. All rights reserved.
+            &copy; {new Date().getFullYear()} Crestwell. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link href="/about" className="text-[11px] text-text-secondary hover:text-text-primary transition-colors">

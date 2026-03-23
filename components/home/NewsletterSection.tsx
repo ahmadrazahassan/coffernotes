@@ -19,7 +19,7 @@ export function NewsletterSection() {
           <div className="lg:col-span-7 lg:pl-8 lg:border-l lg:border-border">
             <SubscribeForm />
             <p className="text-[11px] text-text-secondary mt-3">
-              Join business owners across the UK who use Coffer Notes to stay on top of finance compliance.
+              Join business owners across the UK who use Crestwell to stay on top of finance compliance.
             </p>
           </div>
         </div>

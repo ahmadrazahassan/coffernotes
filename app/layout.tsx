@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -24,26 +24,26 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Coffer Notes",
-    template: "%s | Coffer Notes",
+    default: "Crestwell",
+    template: "%s | Crestwell",
   },
   description: "UK small business finance, explained properly.",
   icons: {
     icon: "/icon.svg",
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.coffernotes.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.co.uk"
   ),
   openGraph: {
-    title: "Coffer Notes",
+    title: "Crestwell",
     description: "UK small business finance, explained properly.",
-    siteName: "Coffer Notes",
+    siteName: "Crestwell",
     locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Coffer Notes",
+    title: "Crestwell",
     description: "UK small business finance, explained properly.",
   },
   // Impact site verification: paste in <head> per verifier instructions
@@ -61,7 +61,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
-    name: "Coffer Notes",
+    name: "Crestwell",
     url: BASE_URL,
     description:
       "Independent UK small business finance publication. HMRC-referenced guides on accounting, payroll, tax, and more.",
@@ -71,7 +71,7 @@ export default function RootLayout({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Coffer Notes",
+    name: "Crestwell",
     url: BASE_URL,
     description: "UK small business finance, explained properly.",
     publisher: { "@id": `${BASE_URL}/#organization` },
