@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito_Sans, Open_Sans } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -114,6 +115,7 @@ export default function RootLayout({
         <ClientVisibility>
           <Footer />
         </ClientVisibility>
+        <Analytics />
         <Toaster />
       </body>
     </html>
