@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Crestwell brand tokens */
+  /* Finlytic brand tokens */
   --color-surface: #F8FAFC;
   --color-text-primary: #0F172A;
   --color-text-secondary: #64748B;

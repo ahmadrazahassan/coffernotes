@@ -1,70 +1,36 @@
-# Crestwell
+# Finlytic
 
-Premium UK finance publishing platform for business owners, finance teams, and compliance-focused operators.
+**Smart accounting software reviews for UK small businesses.**
+
+Finlytic is an independent UK review and comparison site for small business accounting software — Sage, Xero, and QuickBooks. The product is a Next.js + Supabase editorial platform with a public site and an admin CMS.
 
 ## Overview
 
-Crestwell is a production-grade editorial web platform built with Next.js and Supabase.  
-It combines a polished public knowledge hub with an internal admin CMS for publishing, categorization, SEO, and subscriber management.
-
-The project is designed to be:
-
-- brand-consistent and enterprise-ready
-- SEO-focused (metadata, sitemap, RSS, structured data)
-- operationally simple to deploy
-- safe for real editorial workflows (draft/publish, role-based access, sanitized content rendering)
-
-## Core Capabilities
-
-- Public article hub with category pages and article detail pages
-- Admin dashboard for content operations
-- Rich article authoring (Tiptap visual editor + HTML mode)
-- Category management with integrity checks
-- Subscriber collection and CSV export
-- Dynamic SEO metadata and social tags
-- RSS feed and XML sitemap generation
-- Supabase-backed auth, storage, and row-level security
+- Public article and category pages, SEO (metadata, sitemap, RSS, JSON-LD)
+- Admin dashboard for articles, categories, and subscribers
+- Supabase (PostgreSQL, Auth, Storage, RLS)
 
 ## Tech Stack
 
 | Layer | Technology |
 | --- | --- |
-| Frontend | Next.js 16 (App Router), React 19, TypeScript |
-| Styling | Tailwind CSS v4, design tokens in global CSS |
-| UI | shadcn/ui, lucide-react icons |
-| Editor | Tiptap |
-| Backend | Supabase (PostgreSQL, Auth, Storage, RLS) |
-| SEO | Next Metadata API, JSON-LD, sitemap, RSS |
-| Runtime | Node.js |
+| Frontend | Next.js (App Router), React, TypeScript |
+| Styling | Tailwind CSS, design tokens in `app/globals.css` |
+| Backend | Supabase |
+| Analytics | Vercel Analytics (optional), Google Ads tag in root layout |
 
-## Project Structure
+## Project structure
 
 ```text
-crestwell/
-├── app/
-│   ├── page.tsx                         # Homepage
-│   ├── about/page.tsx                   # Company/editorial page
-│   ├── [category]/                      # Category listing pages
-│   ├── [category]/[slug]/               # Article detail pages
-│   ├── admin/                           # Admin CMS area
-│   ├── sitemap.ts                       # Dynamic sitemap
-│   ├── robots.ts                        # Robots directives
-│   └── rss.xml/route.ts                 # RSS feed
-├── components/
-│   ├── home/                            # Homepage sections
-│   ├── articles/                        # Article display components
-│   ├── layout/                          # Navbar, footer, logo
-│   ├── admin/                           # Admin components
-│   └── ui/                              # Reusable UI primitives
-├── lib/
-│   ├── constants.ts                     # Category and site constants
-│   └── supabase/                        # Client/server/admin Supabase setup
-├── supabase/schema.sql                  # Database schema + RLS + seeds
-├── types/index.ts                       # Shared TypeScript types
-└── middleware.ts                        # Auth-protected admin routes
+finlytic/
+├── app/                 # Routes, metadata, RSS, sitemap
+├── components/          # UI, layout, home, articles, admin
+├── lib/constants.ts     # Categories, site name, URLs, copy
+├── supabase/schema.sql  # Schema, RLS, seeds
+└── middleware.ts        # Admin route protection
 ```
 
-## Local Setup
+## Local setup
 
 ### Prerequisites
 
@@ -72,101 +38,78 @@ crestwell/
 - npm
 - Supabase project
 
-### 1) Install dependencies
+### 1) Install
 
 ```bash
 npm install
 ```
 
-### 2) Configure environment variables
+### 2) Environment
 
-Create `.env.local` in the project root:
+Create `.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
-NEXT_PUBLIC_SITE_URL=https://crestwell.uk
+NEXT_PUBLIC_SITE_URL=https://finlytic.uk
 ```
 
-### 3) Initialize database
+### 3) Database
 
 Run `supabase/schema.sql` in the Supabase SQL Editor.
 
-This sets up:
+### 4) Storage
 
-- tables: `articles`, `categories`, `tags`, `article_tags`, `article_categories`, `subscribers`
-- indexes for public and admin query paths
-- row-level security policies
-- default category seed data
-- storage bucket policies for article images
+Create a public bucket `article-images` in Supabase Storage.
 
-### 4) Create storage bucket
+### 5) Admin user
 
-In Supabase Storage, create a public bucket named `article-images`.
+Create a user in Supabase Auth; sign in at `/admin/login`.
 
-### 5) Create admin user
-
-Create an admin user in Supabase Auth dashboard and sign in at:
-
-- `/admin/login`
-
-### 6) Run development server
+### 6) Dev server
 
 ```bash
 npm run dev
 ```
 
-App URLs:
-
-- Public: `http://localhost:3000`
+- Site: `http://localhost:3000`
 - Admin: `http://localhost:3000/admin/login`
 
-## Available Scripts
+## Scripts
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start local dev server |
-| `npm run build` | Create production build |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Production server |
+| `npm run lint` | ESLint |
 
-## SEO and Discovery
+## Branding
 
-Crestwell includes built-in search/discovery assets:
+- **Name:** Finlytic
+- **Tagline:** Smart accounting software reviews for UK small businesses.
+- **Meta description:** Finlytic is an independent UK review and comparison site for small business accounting software — Sage, Xero, and QuickBooks.
 
-- metadata per route and article
-- canonical URLs via `NEXT_PUBLIC_SITE_URL`
-- `sitemap.xml` generated from published content
-- `robots.txt` for crawler policy
-- `rss.xml` feed for subscribers and syndication
-- JSON-LD structured data in root layout and article pages
-
-## Branding and UX Standards
-
-- Primary brand: `Crestwell`
-- Tone: professional, high-trust, compliance-friendly
-- No placeholder/generic copy in public-facing content
-- No gradients or decorative animations in core brand surfaces
-- Premium, clean UI suitable for Sage-adjacent review workflows
+Site-wide strings live in `lib/constants.ts` (`SITE_NAME`, `SITE_META_DESCRIPTION`, `SITE_URL_FALLBACK`, etc.).
 
 ## Deployment
 
-Recommended: Vercel deployment connected to this repository.
-
-Set the same environment variables in the deployment environment, then run:
+Deploy on Vercel (or similar). Set the same env vars as production, then:
 
 ```bash
 npm run build
 ```
 
-## Security Notes
+## Security
 
-- Never commit secrets (`.env.local`, service keys)
-- Admin credentials should only be created in Supabase Auth UI
-- Keep RLS enabled in production
-- Use least-privilege keys in all environments
+- Do not commit `.env.local` or service role keys.
+- Keep RLS enabled in production.
 
 ## License
 
 Private repository. All rights reserved.
+
+## Design reference
+
+See `FINLYTIC-UI-UX-BLUEPRINT.md` for UI/UX direction.

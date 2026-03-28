@@ -281,7 +281,7 @@ export default function EditArticlePage({
               <label className="text-sm font-medium text-neutral-900 mb-1.5 block">Thumbnail URL</label>
               <div className="flex gap-2 mb-2">
                 <Input
-                  placeholder="https://assets.crestwell.uk/articles/vat-compliance-checklist-cover.jpg"
+                  placeholder="https://assets.finlytic.uk/articles/vat-compliance-checklist-cover.jpg"
                   value={thumbnailUrl}
                   onChange={(e) => setThumbnailUrl(e.target.value)}
                   className="rounded-2xl h-11 bg-neutral-50/50 border-neutral-200 text-neutral-900 focus-visible:ring-1 focus-visible:ring-neutral-900 focus-visible:border-neutral-900 focus-visible:bg-white transition-all shadow-none placeholder:text-neutral-400 flex-1 min-w-0"

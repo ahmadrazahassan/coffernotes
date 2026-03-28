@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
+import { SITE_TAGLINE, THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
 import { formatDate } from "@/lib/utils";
@@ -31,13 +31,13 @@ export async function HeroSection() {
             <div>
               <div className="inline-flex items-center gap-2 border border-border rounded-lg px-3 py-1.5 mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                <span className="text-xs font-medium text-text-secondary">Independent UK finance publication</span>
+                <span className="text-xs font-medium text-text-secondary">{SITE_TAGLINE}</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
-                The finance reference UK small businesses actually use.
+                Compare accounting software with confidence.
               </h1>
               <p className="text-xl text-slate-600 mt-6 leading-relaxed max-w-lg font-medium">
-                HMRC-referenced guides on accounting, payroll, tax compliance, invoicing, and people management. Designed for founders, not just accountants.
+                Independent reviews and buyer-focused guides for Sage, Xero, QuickBooks, and the workflows UK small businesses run every month.
               </p>
               <div className="flex items-center gap-6 mt-8">
                 <Link

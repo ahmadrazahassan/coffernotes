@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { CATEGORIES } from "@/lib/constants";
+import {
+  CATEGORIES,
+  FOOTER_TAGLINE,
+  SITE_CONTACT_EMAIL,
+  SITE_NAME,
+  SITE_TAGLINE,
+} from "@/lib/constants";
 import { SubscribeForm } from "@/components/shared/SubscribeForm";
 import { Mail } from "lucide-react";
 
@@ -13,10 +19,10 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo className="text-neutral-950" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-700">
-              Crestwell delivers practical UK finance guidance for business owners, finance teams, and compliance-led operations.
+              {FOOTER_TAGLINE}
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
-              Editorial content is built using HMRC and GOV.UK references, with Sage product naming kept accurate for professional review.
+              {SITE_TAGLINE} Reviews and guides reference HMRC and GOV.UK where it matters, with accurate naming for Sage, Xero, and QuickBooks.
             </p>
           </div>
 
@@ -69,12 +75,12 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:info@crestwell.uk"
+                href={`mailto:${SITE_CONTACT_EMAIL}`}
                 className="inline-flex items-center gap-2 text-sm text-neutral-700 hover:text-neutral-950"
                 aria-label="Email"
               >
                 <Mail className="h-4 w-4" />
-                info@crestwell.uk
+                {SITE_CONTACT_EMAIL}
               </a>
               <p className="text-sm leading-relaxed text-neutral-600">
                 For content corrections, compliance clarifications, or partnership enquiries, contact the editorial desk.
@@ -101,7 +107,7 @@ export function Footer() {
 
           <div className="border-t border-neutral-200 py-5">
           <p className="text-xs text-neutral-500">
-            &copy; {new Date().getFullYear()} Crestwell. All rights reserved.
+            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
           </div>
         </div>

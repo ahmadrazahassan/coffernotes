@@ -1,4 +1,5 @@
 import { SubscribeForm } from "@/components/shared/SubscribeForm";
+import { SITE_NAME } from "@/lib/constants";
 
 export function NewsletterSection() {
   return (
@@ -19,7 +20,7 @@ export function NewsletterSection() {
           <div className="lg:col-span-7 lg:pl-8 lg:border-l lg:border-border">
             <SubscribeForm />
             <p className="text-[11px] text-text-secondary mt-3">
-              Join business owners across the UK who use Crestwell to stay on top of finance compliance.
+              Join UK business owners who rely on {SITE_NAME} for software comparisons and practical finance guidance.
             </p>
           </div>
         </div>

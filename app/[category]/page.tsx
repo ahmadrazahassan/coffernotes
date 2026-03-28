@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { LoadMoreButton } from "./load-more";
+import { SITE_URL_FALLBACK } from "@/lib/constants";
 import type { Article, Category } from "@/types";
 
 interface Props {
   params: Promise<{ category: string }>;
 }
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: slug } = await params;

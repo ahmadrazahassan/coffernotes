@@ -1,10 +1,10 @@
-# Crestwell UI/UX Direction
+# Finlytic UI/UX Direction
 
-Premium, high-trust, conversion-focused product design blueprint for Crestwell across public site and admin platform.
+Premium, high-trust, conversion-focused product design blueprint for Finlytic across public site and admin platform.
 
 ## Brand Design Intent
 
-Crestwell should feel like a serious fintech editorial and operations product:
+Finlytic should feel like a serious fintech editorial and operations product:
 
 - premium but restrained
 - modern but timeless
@@ -31,7 +31,7 @@ Core principle: **Editorial clarity + Product precision + Financial trust**.
 
 - Grid: 12 columns (`7/5` split desktop)
 - Left: value proposition, supporting copy, dual CTA
-- Right: “Crestwell Brief” panel with real insight snippets and update timestamp
+- Right: “Finlytic Brief” panel with real insight snippets and update timestamp
 - Headline: `text-5xl` desktop / `text-3xl` mobile, max 2 lines
 - Body copy width: max `62ch`
 - Trust strip under CTA: HMRC-referenced, Sage naming verified, updated cadence
@@ -154,7 +154,7 @@ Feedback:
 
 ---
 
-## Crestwell Design System
+## Finlytic Design System
 
 ## Colors
 
@@ -276,4 +276,4 @@ Shadow scale:
 - [ ] Status labels and colors are consistent
 - [ ] Mobile breakpoints preserve hierarchy and usability
 - [ ] No gradients and no decorative animations in core UI
-- [ ] Footer/header/admin all align with premium Crestwell tone
+- [ ] Footer/header/admin all align with premium Finlytic tone

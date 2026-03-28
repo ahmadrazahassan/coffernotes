@@ -4,13 +4,28 @@ import { CategoryArticlesBlock } from "@/components/home/CategoryArticlesBlock";
 import { LatestArticles } from "@/components/home/LatestArticles";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import {
+  SITE_META_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL_FALLBACK,
+} from "@/lib/constants";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 export const metadata: Metadata = {
+  title: "Home",
+  description: SITE_META_DESCRIPTION,
   alternates: { canonical: BASE_URL },
-  openGraph: { url: BASE_URL },
+  openGraph: {
+    url: BASE_URL,
+    title: `Home | ${SITE_NAME}`,
+    description: SITE_META_DESCRIPTION,
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    title: `Home | ${SITE_NAME}`,
+    description: SITE_META_DESCRIPTION,
+  },
 };
 
 export default function HomePage() {

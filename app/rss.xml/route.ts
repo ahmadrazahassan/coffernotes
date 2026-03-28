@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
+import { SITE_META_DESCRIPTION, SITE_NAME, SITE_URL_FALLBACK } from "@/lib/constants";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 function escapeXml(str: string): string {
   return str
@@ -64,9 +64,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Crestwell</title>
+    <title>${SITE_NAME}</title>
     <link>${SITE_URL}</link>
-    <description>UK small business finance, explained properly.</description>
+    <description>${escapeXml(SITE_META_DESCRIPTION)}</description>
     <language>en-gb</language>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
 ${items}

@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { createClient } from "@/lib/supabase/server";
+import { SITE_URL_FALLBACK } from "@/lib/constants";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient();

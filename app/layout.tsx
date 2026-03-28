@@ -7,10 +7,15 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ClientVisibility } from "@/components/layout/ClientVisibility";
 import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  SITE_META_DESCRIPTION,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL_FALLBACK,
+} from "@/lib/constants";
 import "./globals.css";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -26,27 +31,27 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Crestwell",
-    template: "%s | Crestwell",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "UK small business finance, explained properly.",
+  description: SITE_META_DESCRIPTION,
   icons: {
     icon: "/icon.svg",
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk"
+    process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK
   ),
   openGraph: {
-    title: "Crestwell",
-    description: "UK small business finance, explained properly.",
-    siteName: "Crestwell",
+    title: SITE_NAME,
+    description: SITE_META_DESCRIPTION,
+    siteName: SITE_NAME,
     locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Crestwell",
-    description: "UK small business finance, explained properly.",
+    title: SITE_NAME,
+    description: SITE_META_DESCRIPTION,
   },
   // Impact site verification: paste in <head> per verifier instructions
   other: {
@@ -63,19 +68,18 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
-    name: "Crestwell",
+    name: SITE_NAME,
     url: BASE_URL,
-    description:
-      "Independent UK small business finance publication. HMRC-referenced guides on accounting, payroll, tax, and more.",
+    description: SITE_META_DESCRIPTION,
     sameAs: [],
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Crestwell",
+    name: SITE_NAME,
     url: BASE_URL,
-    description: "UK small business finance, explained properly.",
+    description: SITE_TAGLINE,
     publisher: { "@id": `${BASE_URL}/#organization` },
     inLanguage: "en-GB",
     potentialAction: {

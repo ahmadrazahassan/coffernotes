@@ -7,6 +7,7 @@ import { ArticleCard } from "@/components/articles/ArticleCard";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { Separator } from "@/components/ui/separator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_NAME, SITE_URL_FALLBACK } from "@/lib/constants";
 import type { Article } from "@/types";
 
 interface Props {
@@ -24,8 +25,7 @@ async function getArticle(slug: string) {
   return data as Article | null;
 }
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.crestwell.uk";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: categorySlug, slug } = await params;
@@ -118,7 +118,7 @@ export default async function ArticlePage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "Crestwell",
+      name: SITE_NAME,
     },
     mainEntityOfPage: {
       "@type": "WebPage",

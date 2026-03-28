@@ -1,3 +1,5 @@
+import { SITE_NAME } from "@/lib/constants";
+
 export function HowItHelps() {
   return (
     <section className="py-16">
@@ -11,7 +13,7 @@ export function HowItHelps() {
               How we research and write every article
             </h2>
             <p className="text-sm text-text-secondary mt-3 leading-relaxed">
-              Crestwell exists to give UK business owners finance guidance they can act on. Every article follows the same editorial process.
+              {SITE_NAME} helps UK small businesses compare accounting software with clarity. Every review follows the same editorial framework.
             </p>
           </div>
 
