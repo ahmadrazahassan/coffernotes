@@ -12,17 +12,17 @@ export function NewsletterSection() {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.02em] text-neutral-900 mb-5 leading-[1.1]">
-            Clear financial strategy, <br className="hidden md:block" />delivered strictly to your inbox.
+            Independent accounting software insights, <br className="hidden md:block" />delivered every week.
           </h2>
 
           <p className="text-base md:text-lg text-neutral-600 mb-10 max-w-2xl font-medium leading-[1.6]">
-            Receive our independent software comparisons, workflow analysis, and essential HMRC compliance intelligence designed for scaling UK businesses.
+            Get honest Sage, Xero and QuickBooks comparisons, Making Tax Digital compliance updates, UK payroll news, and practical small business finance guides — straight to your inbox. Written for UK sole traders and SMEs. Zero fluff.
           </p>
 
           <div className="w-full max-w-md">
             <SubscribeForm />
             <p className="text-[11px] text-neutral-500 mt-5 font-bold uppercase tracking-widest">
-              Zero fluff. Unsubscribe at any time.
+              ZERO SPAM. UNSUBSCRIBE AT ANY TIME.
             </p>
           </div>
 

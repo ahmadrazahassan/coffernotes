@@ -39,7 +39,7 @@ export function SubscribeForm({ compact = false }: { compact?: boolean }) {
     <form onSubmit={handleSubmit} className="flex gap-3">
       <Input
         type="email"
-        placeholder="Your email address"
+        placeholder="Enter your email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className={`rounded-xl flex-1 ${compact ? "h-9 text-sm" : ""}`}
