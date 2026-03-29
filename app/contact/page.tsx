@@ -6,7 +6,7 @@ import {
   SITE_NAME,
   SITE_URL_FALLBACK,
 } from "@/lib/constants";
-import { Mail, MessageSquare, Shield, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
@@ -21,131 +21,155 @@ export const metadata: Metadata = {
   },
 };
 
-const cards = [
-  {
-    variant: "mailto" as const,
-    title: "Editorial & corrections",
-    description:
-      "Spotted an error in a guide, a broken HMRC reference, or outdated product terminology? Tell us and we will review it.",
-    href: `mailto:${SITE_CONTACT_EMAIL}?subject=Editorial%20correction`,
-    cta: "Email editorial",
-    icon: MessageSquare,
-  },
-  {
-    variant: "internal" as const,
-    title: "Privacy & data",
-    description:
-      "Questions about how we handle personal data, cookies, or your rights under UK GDPR.",
-    href: "/privacy",
-    cta: "Privacy Policy",
-    icon: Shield,
-  },
-  {
-    variant: "mailto" as const,
-    title: "Partnerships & press",
-    description:
-      "Media, affiliate programme, or commercial collaboration enquiries. We respond when there is a clear fit with our editorial standards.",
-    href: `mailto:${SITE_CONTACT_EMAIL}?subject=Partnership%20enquiry`,
-    cta: "Email partnerships",
-    icon: Mail,
-  },
-];
-
 export default function ContactPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-20">
-      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-        Contact us
-      </h1>
-      <p className="text-lg text-text-secondary mt-6 leading-relaxed">
-        {SITE_NAME} is an independent editorial site. We do not run a public phone line;
-        email is the best way to reach the team. We aim to reply within a few business days.
-      </p>
-
-      {/* ── Primary inbox + Location ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-        <div className="rounded-2xl border border-border bg-surface p-6 md:p-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
-            Primary inbox
-          </p>
-          <a
-            href={`mailto:${SITE_CONTACT_EMAIL}`}
-            className="mt-3 inline-flex items-center gap-3 text-xl font-bold text-text-primary hover:text-brand-accent transition-colors"
-          >
-            <Mail className="h-6 w-6 shrink-0" aria-hidden />
-            {SITE_CONTACT_EMAIL}
-          </a>
-          <p className="text-sm text-text-secondary mt-4 leading-relaxed">
-            For general enquiries, include a short subject line so we can route your message.
-          </p>
+    <div className="mx-auto max-w-7xl px-4 py-12 lg:py-24">
+      {/* Wrapper to give it that floating Framer feel */}
+      <div className="rounded-3xl border border-neutral-200 bg-white overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 relative min-h-[700px]">
+        
+        {/* Connection Arrow (Desktop Only) */}
+        <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center w-8 bg-white h-px">
+          <div className="w-full h-px bg-neutral-900 absolute"></div>
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-neutral-900 border-b-[4px] border-b-transparent"></div>
         </div>
 
-        <div className="rounded-2xl border border-border bg-surface p-6 md:p-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
-            Location
-          </p>
-          <div className="mt-3 flex items-center gap-3">
-            <MapPin className="h-6 w-6 shrink-0 text-text-primary" aria-hidden />
-            <span className="text-xl font-bold text-text-primary">London, UK</span>
+        {/* ── Left Side: Details ── */}
+        <div className="p-10 lg:p-20 flex flex-col justify-between bg-white text-neutral-950 relative">
+          <div>
+            <h1 className="text-6xl md:text-7xl lg:text-[5rem] font-bold tracking-[-0.03em] leading-[1.05] text-neutral-950">
+              Let&rsquo;s get<br />in touch
+            </h1>
+            <p className="mt-8 text-2xl lg:text-[1.75rem] font-medium tracking-tight text-neutral-900 leading-snug">
+              Don&rsquo;t be afraid to<br />
+              say hello with us!
+            </p>
           </div>
-          <p className="text-sm text-text-secondary mt-4 leading-relaxed">
-            {SITE_NAME} is headquartered in London, United Kingdom. Our editorial
-            team works across the UK.
-          </p>
-        </div>
-      </div>
 
-      <h2 className="text-2xl font-bold mt-14">How we can help</h2>
-      <div className="grid grid-cols-1 gap-4 mt-6 sm:grid-cols-1">
-        {cards.map((card) => {
-          const Icon = card.icon;
-          const inner = (
-            <div className="flex items-start gap-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-background">
-                <Icon className="h-5 w-5 text-text-primary" aria-hidden />
-              </span>
-              <div>
-                <h3 className="font-bold text-text-primary">{card.title}</h3>
-                <p className="text-sm text-text-secondary mt-2 leading-relaxed">
-                  {card.description}
-                </p>
-                <span className="mt-4 inline-flex text-sm font-semibold text-brand-accent">
-                  {card.cta} →
-                </span>
+          <div className="mt-20 space-y-10">
+            <div>
+              <p className="text-sm font-semibold text-neutral-500 mb-1">Email</p>
+              <a
+                href={`mailto:${SITE_CONTACT_EMAIL}`}
+                className="text-lg lg:text-xl font-bold text-neutral-950 hover:opacity-70 transition-opacity tracking-tight"
+              >
+                {SITE_CONTACT_EMAIL}
+              </a>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-neutral-500 mb-1">Office</p>
+              <p className="text-lg lg:text-xl font-bold text-neutral-950 tracking-tight leading-snug max-w-[250px]">
+                London, United Kingdom
+              </p>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-1 mt-2 text-sm font-bold text-neutral-950 hover:underline decoration-neutral-300 underline-offset-4"
+              >
+                See our story <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Right Side: Form ── */}
+        <div className="bg-[#1C1C1C] p-10 lg:p-20 text-white flex flex-col justify-center">
+          <h2 className="text-2xl font-bold tracking-tight text-white mb-10">Contact</h2>
+
+          <form className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+              {/* Name */}
+              <div className="group relative">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
+                >
+                  Name
+                </label>
+              </div>
+
+              {/* Email */}
+              <div className="group relative">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                />
+                <label
+                  htmlFor="email"
+                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
+                >
+                  Email
+                </label>
+              </div>
+
+              {/* Phone */}
+              <div className="group relative">
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                />
+                <label
+                  htmlFor="phone"
+                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
+                >
+                  Phone
+                </label>
+              </div>
+
+              {/* Subject */}
+              <div className="group relative">
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                />
+                <label
+                  htmlFor="subject"
+                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
+                >
+                  Subject
+                </label>
               </div>
             </div>
-          );
 
-          const className =
-            "group block rounded-2xl border border-border p-6 bg-background hover:border-text-secondary/30 hover:bg-surface/80 transition-colors";
+            {/* Interest Area */}
+            <div className="group relative">
+              <input
+                type="text"
+                id="interest"
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+              />
+              <label
+                htmlFor="interest"
+                className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
+              >
+                Tell us about your interested in
+              </label>
+            </div>
 
-          if (card.variant === "internal") {
-            return (
-              <Link key={card.title} href={card.href} className={className}>
-                {inner}
-              </Link>
-            );
-          }
-
-          return (
-            <a key={card.title} href={card.href} className={className}>
-              {inner}
-            </a>
-          );
-        })}
+            {/* Submit Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                className="w-full bg-[#E8FF00] text-neutral-950 font-bold py-4 px-8 text-sm hover:bg-[#D7ED00] transition-colors focus:ring-4 focus:ring-[#E8FF00]/20 outline-none"
+              >
+                Send to us
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-
-      <h2 className="text-2xl font-bold mt-14">About {SITE_NAME}</h2>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        {SITE_META_DESCRIPTION} Learn more on our{" "}
-        <Link
-          href="/about"
-          className="font-medium text-text-primary underline decoration-border underline-offset-2 hover:decoration-brand-accent"
-        >
-          About
-        </Link>{" "}
-        page, including our editorial approach.
-      </p>
     </div>
   );
 }

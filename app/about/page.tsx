@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  CATEGORIES,
-  SITE_CONTACT_EMAIL,
   SITE_META_DESCRIPTION,
   SITE_NAME,
   SITE_URL_FALLBACK,
 } from "@/lib/constants";
-import { Mail, MapPin } from "lucide-react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
@@ -21,182 +19,92 @@ export const metadata: Metadata = {
   },
 };
 
+const expertiseTags = [
+  "SAGE BUSINESS CLOUD",
+  "XERO",
+  "QUICKBOOKS",
+  "ACCOUNTING",
+  "TAX & MTD",
+  "PAYROLL (RTI)",
+  "HMRC COMPLIANCE",
+  "CASH FLOW",
+  "GETTING PAID",
+  "SOFTWARE REVIEWS",
+];
+
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-20">
-      <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-        About {SITE_NAME}
-      </h1>
-      <p className="text-lg text-text-secondary mt-6 leading-relaxed">
-        {SITE_NAME} publishes independent reviews and comparisons of small business
-        accounting software used in the UK. Our focus is practical buying guidance
-        for owners and finance teams evaluating Sage, Xero, QuickBooks, and related
-        tools — grounded in real workflows, compliance context, and transparent
-        methodology.
-      </p>
-
-      {/* ── Founder ── */}
-      <h2 className="text-2xl font-bold mt-14">Founded by Nadeem Abbas</h2>
-      <div className="mt-6 rounded-2xl border border-border bg-surface p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row gap-6">
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-neutral-950 text-white text-2xl font-extrabold select-none">
-            NA
-          </div>
-          <div>
-            <h3 className="text-xl font-bold">Nadeem Abbas</h3>
-            <p className="text-sm text-text-secondary mt-0.5">
-              Founder &amp; Editor-in-Chief
-            </p>
-            <p className="text-base text-text-secondary mt-3 leading-relaxed">
-              Nadeem is a London-based finance and technology writer with deep
-              experience covering cloud accounting, payroll compliance, and small
-              business operations across the UK. He founded {SITE_NAME} to give
-              sole traders, freelancers, and growing SMEs an independent,
-              jargon-free resource for evaluating the software that runs their
-              finances — from Sage and Xero to emerging fintech tools.
-            </p>
-            <p className="text-base text-text-secondary mt-3 leading-relaxed">
-              Every article on {SITE_NAME} reflects Nadeem&rsquo;s commitment to
-              accuracy: reviews reference HMRC and GOV.UK directly, use official
-              product terminology (especially for Sage), and are structured around
-              the real decisions UK business owners face every month.
-            </p>
-            <div className="flex items-center gap-2 mt-4 text-sm text-text-secondary">
-              <MapPin className="h-4 w-4 shrink-0" />
-              <span>London, United Kingdom</span>
+    <div className="mx-auto max-w-[1400px] px-4 py-12 lg:py-24">
+      {/* ── Framer-style Rounded Panel ── */}
+      <div className="rounded-[40px] bg-[#F2F4F7] p-8 md:p-16 lg:p-24 overflow-hidden relative">
+        
+        {/* Top Section: Founder Intro */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+          
+          {/* Avatar with Glow */}
+          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+            {/* Colorful Blur Background */}
+            <div className="absolute inset-0 z-0 flex items-center justify-center">
+              <div className="w-[120%] h-[120%] max-w-[500px] bg-gradient-to-tr from-blue-500 via-pink-400 to-yellow-400 opacity-60 blur-3xl rounded-full mix-blend-multiply filter"></div>
+            </div>
+            
+            {/* Subject Image */}
+            <div className="relative z-10 w-full max-w-[400px] aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl bg-white/50 backdrop-blur-sm border border-white/20">
+              <Image
+                src="/images/nadeem_avatar.png"
+                alt="Nadeem Abbas"
+                width={800}
+                height={1000}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* ── The Team ── */}
-      <h2 className="text-2xl font-bold mt-14">Our team</h2>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Behind {SITE_NAME} is a small, specialist editorial team with backgrounds
-        in accounting, financial journalism, and SaaS product analysis. Every team
-        member works to the same editorial standards — transparent methodology,
-        no paid-for coverage, and a relentless focus on what matters to UK
-        businesses. We cross-check each review for regulatory accuracy, test
-        software against real-world workflows, and update content as products
-        evolve.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-        {[
-          {
-            role: "Editorial &amp; Research",
-            desc: "Hands-on testing, feature audits, and HMRC compliance checks.",
-          },
-          {
-            role: "Content &amp; SEO",
-            desc: "Long-form guides, comparison articles, and UK search intelligence.",
-          },
-          {
-            role: "Product &amp; Design",
-            desc: "Platform development, UX, and reader experience.",
-          },
-        ].map((t) => (
-          <div
-            key={t.role}
-            className="rounded-2xl border border-border p-6 bg-background"
-          >
-            <h3 className="font-bold" dangerouslySetInnerHTML={{ __html: t.role }} />
-            <p className="text-sm text-text-secondary mt-1">{t.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Mission ── */}
-      <h2 className="text-2xl font-bold mt-14">Our mission</h2>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Choosing accounting software affects VAT, payroll, reporting, and how
-        confidently you can close the month. {SITE_NAME} exists to reduce guesswork
-        by explaining what matters, what differs between products, and what to verify
-        before you commit.
-      </p>
-
-      {/* ── What we cover ── */}
-      <h2 className="text-2xl font-bold mt-14">What we cover</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-        {CATEGORIES.map((cat) => (
-          <div
-            key={cat.slug}
-            className="rounded-2xl border border-border p-6 bg-surface"
-          >
-            <h3 className="font-bold">{cat.name}</h3>
-            <p className="text-sm text-text-secondary mt-1">
-              {cat.description}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Editorial approach ── */}
-      <h2 id="editorial" className="text-2xl font-bold mt-14">
-        Our editorial approach
-      </h2>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Reviews are structured around consistent criteria: setup and onboarding,
-        everyday bookkeeping, payroll and compliance touchpoints, reporting,
-        integrations, and support. We reference HMRC and GOV.UK where tax and
-        filing context matters, and we use official product names and current
-        feature terminology — especially for Sage — so comparisons stay accurate
-        for professional readers.
-      </p>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        {SITE_NAME} does not accept payment for editorial coverage. When we
-        recommend a product, we state the rationale and the limitations clearly.
-        For more on how we handle affiliate partnerships, see our{" "}
-        <Link
-          href="/affiliate-disclosure"
-          className="font-medium text-text-primary underline decoration-border underline-offset-2 hover:decoration-brand-accent"
-        >
-          Affiliate Disclosure
-        </Link>
-        .
-      </p>
-
-      {/* ── Location ── */}
-      <h2 className="text-2xl font-bold mt-14">Where we are</h2>
-      <div className="mt-6 rounded-2xl border border-border bg-surface p-6 md:p-8">
-        <div className="flex items-start gap-4">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-background">
-            <MapPin className="h-5 w-5 text-text-primary" aria-hidden />
-          </span>
-          <div>
-            <h3 className="font-bold text-text-primary">London, United Kingdom</h3>
-            <p className="text-sm text-text-secondary mt-1 leading-relaxed">
-              {SITE_NAME} is headquartered in London. Our editorial team works
-              across the UK, keeping us close to the businesses, regulations,
-              and market conditions we write about every day.
+          {/* Intro Text */}
+          <div className="lg:col-span-7 max-w-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 mb-8 leading-tight">
+              Hi there!
+            </h1>
+            <p className="text-xl md:text-2xl text-neutral-600 leading-[1.6] font-medium">
+              Fuelled by a passion for financial clarity, I founded {SITE_NAME} to give UK businesses a jargon-free resource for evaluating the software that runs their finances. Based in London, our team has a deep desire to excel in simplifying everything from Sage and Xero to HMRC compliance.
             </p>
           </div>
         </div>
-      </div>
 
-      {/* ── Connect ── */}
-      <h2 id="contact" className="text-2xl font-bold mt-14">
-        Connect with us
-      </h2>
-      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        For corrections, methodology questions, or partnership enquiries,
-        visit our{" "}
-        <Link
-          href="/contact"
-          className="font-medium text-text-primary underline decoration-border underline-offset-2 hover:decoration-brand-accent"
-        >
-          contact page
-        </Link>{" "}
-        or email us directly.
-      </p>
-      <div className="flex flex-wrap gap-4 mt-6">
-        <a
-          href={`mailto:${SITE_CONTACT_EMAIL}`}
-          className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium text-text-primary hover:bg-surface hover:border-text-secondary/30 transition-colors"
-          aria-label="Email"
-        >
-          <Mail className="h-5 w-5" />
-          {SITE_CONTACT_EMAIL}
-        </a>
+        {/* Bottom Section: Mission & Expertise */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mt-24 lg:mt-32 items-start">
+          
+          {/* The Mission Text */}
+          <div className="lg:col-span-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 tracking-tight">
+              Our Editorial Mission
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed mb-6 font-medium">
+              Always up for a challenge, our team tests accounting software against real-world UK workflows. Every article reflects our commitment to accuracy: reviews reference HMRC directly and use official product terminology so comparisons stay accurate for professional readers.
+            </p>
+            <p className="text-lg text-neutral-600 leading-relaxed font-medium">
+              {SITE_NAME} does not accept payment for editorial coverage. When we recommend a product, we state the rationale and limitations clearly. Read our{" "}
+              <Link href="/affiliate-disclosure" className="text-neutral-900 underline decoration-neutral-300 underline-offset-4 hover:opacity-70 transition-opacity">
+                Affiliate Disclosure
+              </Link>
+              {" "}to see how we maintain independence.
+            </p>
+          </div>
+
+          {/* Tags / Pills */}
+          <div className="lg:col-span-6 flex flex-wrap gap-3 mt-4 lg:mt-0 pt-2 lg:pl-10">
+            {expertiseTags.map((tag) => (
+              <span
+                key={tag}
+                className="px-5 py-2.5 rounded-full border border-neutral-200/80 bg-white text-[11px] font-bold text-neutral-700 uppercase tracking-widest shadow-sm hover:shadow-md transition-shadow cursor-default"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+        </div>
       </div>
     </div>
   );
