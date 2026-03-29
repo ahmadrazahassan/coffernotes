@@ -34,7 +34,7 @@ export default function HomePage() {
       <HeroSection />
       
       {/* Category Feeds representing an authoritative B2B Resource Hub */}
-      <CategoryArticlesBlock categorySlug="software-reviews" categoryName="Software Reviews" />
+      <CategoryArticlesBlock categorySlug="comparisons" categoryName="Comparisons" />
       <CategoryArticlesBlock categorySlug="accounting" categoryName="Accounting" />
       <CategoryArticlesBlock categorySlug="payroll" categoryName="Payroll & HR" />
       <CategoryArticlesBlock categorySlug="getting-paid" categoryName="Getting Paid" />
