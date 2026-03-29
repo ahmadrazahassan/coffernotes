@@ -8,7 +8,7 @@ import {
   SITE_TAGLINE,
 } from "@/lib/constants";
 import { SubscribeForm } from "@/components/shared/SubscribeForm";
-import { Mail } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -24,6 +24,10 @@ export function Footer() {
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
               {SITE_TAGLINE} Reviews and guides reference HMRC and GOV.UK where it matters, with accurate naming for Sage, Xero, and QuickBooks.
             </p>
+            <div className="flex items-center gap-2 mt-5 text-sm text-neutral-600">
+              <MapPin className="h-4 w-4 shrink-0 text-neutral-500" />
+              <span>London, United Kingdom</span>
+            </div>
           </div>
 
           <div className="lg:col-span-3">
@@ -53,6 +57,9 @@ export function Footer() {
               </Link>
               <Link href="/about#editorial" className="text-sm text-neutral-700 hover:text-neutral-950">
                 Editorial Standards
+              </Link>
+              <Link href="/affiliate-disclosure" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Affiliate Disclosure
               </Link>
               <Link href="/contact" className="text-sm text-neutral-700 hover:text-neutral-950">
                 Contact
@@ -91,6 +98,10 @@ export function Footer() {
                 <Mail className="h-4 w-4" />
                 {SITE_CONTACT_EMAIL}
               </a>
+              <div className="flex items-center gap-2 text-sm text-neutral-600">
+                <MapPin className="h-4 w-4 shrink-0" />
+                <span>London, UK</span>
+              </div>
               <p className="text-sm leading-relaxed text-neutral-600">
                 Editorial corrections, compliance questions, or partnership enquiries — see our contact page or email the desk.
               </p>
@@ -115,9 +126,14 @@ export function Footer() {
           </div>
 
           <div className="border-t border-neutral-200 py-5">
-          <p className="text-xs text-neutral-500">
-            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-neutral-500">
+              &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved. London, United Kingdom.
+            </p>
+            <p className="text-xs text-neutral-400">
+              Independent accounting software reviews for UK businesses.
+            </p>
+          </div>
           </div>
         </div>
       </div>

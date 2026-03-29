@@ -29,6 +29,7 @@ export const FOOTER_TAGLINE =
  * Must match seeded categories in supabase/schema.sql.
  */
 export const CATEGORIES = [
+  { name: "Software Reviews", slug: "software-reviews", description: "Head-to-head comparisons, in-depth product reviews, and buyer guides for Sage, Xero, QuickBooks, and other UK accounting software." },
   { name: "Accounting", slug: "accounting", description: "Bookkeeping fundamentals, cloud software, bank reconciliation, digital records, and keeping your books clean." },
   { name: "Getting Paid", slug: "getting-paid", description: "How to invoice properly, collect faster, and fix the mistakes that keep your money stuck with clients." },
   { name: "Payroll", slug: "payroll", description: "PAYE setup, RTI filing, pension auto-enrolment, wage calculations, and avoiding HMRC payroll fines." },

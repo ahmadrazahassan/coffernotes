@@ -6,7 +6,7 @@ import {
   SITE_NAME,
   SITE_URL_FALLBACK,
 } from "@/lib/constants";
-import { Mail, MessageSquare, Shield } from "lucide-react";
+import { Mail, MessageSquare, Shield, MapPin } from "lucide-react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
@@ -62,20 +62,37 @@ export default function ContactPage() {
         email is the best way to reach the team. We aim to reply within a few business days.
       </p>
 
-      <div className="mt-10 rounded-2xl border border-border bg-surface p-6 md:p-8">
-        <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
-          Primary inbox
-        </p>
-        <a
-          href={`mailto:${SITE_CONTACT_EMAIL}`}
-          className="mt-3 inline-flex items-center gap-3 text-xl font-bold text-text-primary hover:text-brand-accent transition-colors"
-        >
-          <Mail className="h-6 w-6 shrink-0" aria-hidden />
-          {SITE_CONTACT_EMAIL}
-        </a>
-        <p className="text-sm text-text-secondary mt-4 leading-relaxed">
-          For general enquiries, include a short subject line so we can route your message.
-        </p>
+      {/* ── Primary inbox + Location ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+        <div className="rounded-2xl border border-border bg-surface p-6 md:p-8">
+          <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
+            Primary inbox
+          </p>
+          <a
+            href={`mailto:${SITE_CONTACT_EMAIL}`}
+            className="mt-3 inline-flex items-center gap-3 text-xl font-bold text-text-primary hover:text-brand-accent transition-colors"
+          >
+            <Mail className="h-6 w-6 shrink-0" aria-hidden />
+            {SITE_CONTACT_EMAIL}
+          </a>
+          <p className="text-sm text-text-secondary mt-4 leading-relaxed">
+            For general enquiries, include a short subject line so we can route your message.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-surface p-6 md:p-8">
+          <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
+            Location
+          </p>
+          <div className="mt-3 flex items-center gap-3">
+            <MapPin className="h-6 w-6 shrink-0 text-text-primary" aria-hidden />
+            <span className="text-xl font-bold text-text-primary">London, UK</span>
+          </div>
+          <p className="text-sm text-text-secondary mt-4 leading-relaxed">
+            {SITE_NAME} is headquartered in London, United Kingdom. Our editorial
+            team works across the UK.
+          </p>
+        </div>
       </div>
 
       <h2 className="text-2xl font-bold mt-14">How we can help</h2>
