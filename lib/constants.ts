@@ -18,6 +18,9 @@ export const SITE_URL_FALLBACK = "https://www.finlytic.uk";
 
 export const SITE_CONTACT_EMAIL = "info@finlytic.uk";
 
+/** Shown on Privacy Policy and Terms of Use (update when legal text changes). */
+export const LEGAL_EFFECTIVE_DATE = "30 March 2026";
+
 export const FOOTER_TAGLINE =
   "Independent accounting software reviews for UK businesses.";
 

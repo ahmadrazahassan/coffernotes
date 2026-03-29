@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   CATEGORIES,
   SITE_CONTACT_EMAIL,
@@ -77,8 +78,14 @@ export default function AboutPage() {
         Connect with us
       </h2>
       <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        For corrections, methodology questions, or partnership enquiries, contact
-        us by email.
+        For corrections, methodology questions, or partnership enquiries,         visit our{" "}
+        <Link
+          href="/contact"
+          className="font-medium text-text-primary underline decoration-border underline-offset-2 hover:decoration-brand-accent"
+        >
+          contact page
+        </Link>{" "}
+        or email us directly.
       </p>
       <div className="flex flex-wrap gap-4 mt-6">
         <a

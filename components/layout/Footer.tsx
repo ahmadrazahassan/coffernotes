@@ -54,10 +54,13 @@ export function Footer() {
               <Link href="/about#editorial" className="text-sm text-neutral-700 hover:text-neutral-950">
                 Editorial Standards
               </Link>
-              <Link href="/about" className="text-sm text-neutral-700 hover:text-neutral-950">
+              <Link href="/contact" className="text-sm text-neutral-700 hover:text-neutral-950">
+                Contact
+              </Link>
+              <Link href="/privacy" className="text-sm text-neutral-700 hover:text-neutral-950">
                 Privacy Policy
               </Link>
-              <Link href="/about" className="text-sm text-neutral-700 hover:text-neutral-950">
+              <Link href="/terms" className="text-sm text-neutral-700 hover:text-neutral-950">
                 Terms of Use
               </Link>
               <Link href="/rss.xml" className="text-sm text-neutral-700 hover:text-neutral-950">
@@ -74,6 +77,12 @@ export function Footer() {
               Contact
             </h4>
             <div className="flex flex-col gap-3">
+              <Link
+                href="/contact"
+                className="text-sm font-medium text-neutral-900 hover:text-neutral-950"
+              >
+                Contact us
+              </Link>
               <a
                 href={`mailto:${SITE_CONTACT_EMAIL}`}
                 className="inline-flex items-center gap-2 text-sm text-neutral-700 hover:text-neutral-950"
@@ -83,7 +92,7 @@ export function Footer() {
                 {SITE_CONTACT_EMAIL}
               </a>
               <p className="text-sm leading-relaxed text-neutral-600">
-                For content corrections, compliance clarifications, or partnership enquiries, contact the editorial desk.
+                Editorial corrections, compliance questions, or partnership enquiries — see our contact page or email the desk.
               </p>
             </div>
           </div>

@@ -26,8 +26,18 @@ export function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-6">
         <Logo />
 
-        <nav className="hidden xl:block">
-          <div className="inline-flex items-center rounded-md bg-neutral-950 p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28)] ring-1 ring-neutral-900">
+        <nav className="hidden xl:flex items-center gap-3">
+          <Link
+            href="/contact"
+            className={`text-[11px] font-bold uppercase tracking-[0.06em] transition-colors ${
+              isActive("/contact")
+                ? "text-neutral-950"
+                : "text-neutral-700 hover:text-neutral-950"
+            }`}
+          >
+            Contact
+          </Link>
+          <div className="inline-flex items-center rounded-md bg-neutral-950 p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28)] ring-1 ring-neutral-900 shrink-0">
             {CATEGORIES.map((cat) => {
               const href = `/${cat.slug}`;
               const active = isActive(href);
@@ -62,6 +72,13 @@ export function Navbar() {
           <SheetContent side="right" className="w-80 border-l-neutral-200">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="mt-8 flex flex-col gap-3">
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md border border-neutral-200 px-4 py-3 text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50"
+              >
+                Contact
+              </Link>
               {CATEGORIES.map((cat) => (
                 <Link
                   key={cat.slug}

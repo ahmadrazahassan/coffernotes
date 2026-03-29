@@ -12,7 +12,7 @@ export function FinalCTA() {
               Find the guide you need
             </h2>
             <p className="text-text-secondary mt-3 text-base leading-relaxed">
-              Every article is categorised and searchable. Pick a topic below or use the search bar to find specific HMRC guidance, step-by-step processes, or software comparisons.
+              Every article is organised by topic. Pick a category below to browse HMRC guidance, step-by-step processes, and software comparisons.
             </p>
             <Link
               href="/accounting"
