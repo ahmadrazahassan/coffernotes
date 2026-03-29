@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_META_DESCRIPTION,
   },
-  // Impact site verification: paste in <head> per verifier instructions
+  // Impact site verification (Sage UK / impact.com) — homepage <head>
   other: {
-    "impact-site-verification": "50563464-78db-477c-ada3-5172815b9e6f",
+    "impact-site-verification": "9bf10a47-235f-4f19-867d-c6aeabc2a6bc",
   },
 };
 
@@ -82,15 +82,10 @@ export default function RootLayout({
     description: SITE_TAGLINE,
     publisher: { "@id": `${BASE_URL}/#organization` },
     inLanguage: "en-GB",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/?q={search_term_string}` },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (
-    <html lang="en">
+    <html lang="en-GB">
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18036529064"
@@ -108,7 +103,7 @@ export default function RootLayout({
       <body className={`${nunitoSans.variable} ${openSans.variable} font-sans antialiased`}>
         {/* Impact site verification — first body section for verifier crawl */}
         <span className="sr-only" aria-hidden="true">
-          Impact-Site-Verification: 50563464-78db-477c-ada3-5172815b9e6f
+          Impact-Site-Verification: 9bf10a47-235f-4f19-867d-c6aeabc2a6bc
         </span>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
