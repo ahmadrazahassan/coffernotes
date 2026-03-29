@@ -45,10 +45,10 @@ export default function AboutPage() {
         {/* Top Section: Intro */}
         <div className="relative z-10 max-w-4xl">
           <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold tracking-[-0.03em] text-neutral-900 mb-8 leading-[1]">
-            Hi there!
+            Hi, I&rsquo;m Nadeem.
           </h1>
           <p className="text-2xl md:text-3xl lg:text-4xl text-neutral-600 leading-[1.4] font-medium tracking-tight">
-            Fuelled by a passion for financial clarity, {SITE_NAME} was founded to give UK businesses a jargon-free resource for evaluating the software that runs their finances. Based in London, our team has a deep desire to excel in simplifying everything from Sage and Xero to HMRC compliance.
+            Based in London, I founded {SITE_NAME} with a single goal: to give UK businesses a jargon-free, deeply researched resource for evaluating the software that runs their finances. Fuelled by a passion for financial clarity, my team and I have a deep desire to excel in simplifying everything from Sage and Xero setups to strict HMRC compliance.
           </p>
         </div>
 
@@ -58,17 +58,16 @@ export default function AboutPage() {
           {/* The Mission Text */}
           <div className="lg:col-span-6">
             <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 tracking-tight">
-              Our Editorial Mission
+              Our Publishing Focus
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed mb-6 font-medium">
-              Always up for a challenge, our team tests accounting software against real-world UK workflows. Every article reflects our commitment to accuracy: reviews reference HMRC directly and use official product terminology so comparisons stay accurate for professional readers.
+              Always up for a challenge, I built an editorial team dedicated to testing accounting software against real-world UK workflows. We specialize in evaluating premier platforms like Sage Business Cloud and Sage Intacct, ensuring that when we recommend a solution to SMEs and sole traders, it seamlessly handles Making Tax Digital (MTD), RTI payroll, and daily bookkeeping.
             </p>
             <p className="text-lg text-neutral-600 leading-relaxed font-medium">
-              {SITE_NAME} does not accept payment for editorial coverage. When we recommend a product, we state the rationale and limitations clearly. Read our{" "}
+              By structuring our content around high-intent software comparisons and buyer guides, we connect reliable B2B traffic with the industry's best SaaS providers. Discover more about our commercial partnerships in our{" "}
               <Link href="/affiliate-disclosure" className="text-neutral-900 underline decoration-neutral-400 underline-offset-4 hover:opacity-70 transition-opacity">
                 Affiliate Disclosure
-              </Link>
-              {" "}to see how we maintain independence.
+              </Link>.
             </p>
           </div>
 
