@@ -37,94 +37,63 @@ export default function AffiliateDisclosurePage() {
 
       <div className="mt-10 rounded-2xl border border-border bg-surface p-6 md:p-8">
         <p className="text-sm font-semibold uppercase tracking-widest text-text-secondary">
-          Key disclosure
+          Affiliate Disclosure
         </p>
         <p className="text-lg text-text-primary mt-3 leading-relaxed font-medium">
-          {SITE_NAME} is a participant in affiliate programmes, including
-          Sage&nbsp;UK&rsquo;s affiliate programme operated through Impact.com.
-          When you click on certain links on our site and make a purchase, we may
-          earn a commission at no additional cost to you.
+          {SITE_NAME} is an independent publisher supported by its readers. When you purchase a product or service through links on our site, we may earn an affiliate commission at no additional cost to you. This enables us to maintain our rigorous editorial standards and continue providing premium, independent research.
         </p>
       </div>
 
-      <h2 className="text-2xl font-bold mt-12">How affiliate links work</h2>
+      <h2 className="text-2xl font-bold mt-12">How affiliate relationships work</h2>
       <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Some articles on {SITE_NAME} contain affiliate links to products and
-        services we review. If you click one of these links and subsequently
-        make a purchase or sign up for a service, the vendor may pay us a
-        referral commission. This happens at no extra cost to you &mdash; the
-        price you pay is the same whether you use our link or go directly to the
-        vendor&rsquo;s website.
+        Certain articles and resources on {SITE_NAME} include affiliate links to the enterprise solutions and software we evaluate. If you navigate through one of these links and finalize a purchase or subscription, the respective vendor may provide us with a referral commission. This process operates seamlessly at no extra expense to you &mdash; the pricing remains identical whether you utilize our link or visit the vendor&rsquo;s platform directly.
       </p>
 
       <h2 className="text-2xl font-bold mt-12">
-        Editorial independence
+        Editorial autonomy and objective analysis
       </h2>
       <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Affiliate partnerships do not influence our editorial content,
-        recommendations, or review methodology. Every review published on{" "}
-        {SITE_NAME} is based on independent research, hands-on testing, and
-        transparent evaluation criteria. We will never recommend a product
-        solely because it pays a higher commission.
+        Our affiliate partnerships operate strictly independent of our editorial operations. They do not dictate our content strategy, alter our recommendations, or influence our proprietary evaluation methodology. Every analysis published on {" "}
+        {SITE_NAME} is the result of unsponsored research, comprehensive hands-on testing, and transparent criteria. We emphatically refuse to endorse a product based on its commission structure or partnership potential.
       </p>
       <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Our editorial team evaluates software based on real-world use cases
-        relevant to UK small businesses, including setup, day-to-day
-        bookkeeping, payroll compliance, reporting, integrations, and customer
-        support quality.
+        Our editorial specialists evaluate platforms based solely on real-world utility, robust performance, and the tangible value they deliver to modern businesses. Key factors include implementation processes, operational compliance, advanced reporting capabilities, and the overall quality of enterprise support.
       </p>
 
       <h2 className="text-2xl font-bold mt-12">
-        Which programmes we participate in
-      </h2>
-      <ul className="mt-4 list-disc pl-6 text-lg text-text-secondary space-y-2 leading-relaxed">
-        <li>
-          <span className="font-medium text-text-primary">
-            Sage UK (via Impact.com)
-          </span>{" "}
-          &mdash; Sage Business Cloud Accounting and Sage Intacct.
-        </li>
-        <li>
-          <span className="font-medium text-text-primary">
-            Other software vendors
-          </span>{" "}
-          &mdash; We may join additional affiliate programmes for products we
-          review (e.g.&nbsp;Xero, QuickBooks). Any such partnerships will be
-          subject to the same editorial standards described here.
-        </li>
-      </ul>
-
-      <h2 className="text-2xl font-bold mt-12">
-        How we identify affiliate content
+        Our Affiliate Partnerships
       </h2>
       <p className="text-lg text-text-secondary mt-4 leading-relaxed">
-        Articles that contain affiliate links include a disclosure notice near
-        the top of the page. Additionally, we use language such as
-        &ldquo;affiliate link&rdquo; or &ldquo;sponsored&rdquo; where required
-        by applicable advertising standards (UK ASA / CMA guidelines and
-        equivalent regulations).
+        We maintain partnerships with a variety of industry-leading software providers and reputable affiliate networks. These professional relationships sustain our business model while allowing us to deliver unbiased, high-caliber insights. Crucially, our participation in these programs does not guarantee a favorable review or preferential placement for any vendor or service.
       </p>
 
       <h2 className="text-2xl font-bold mt-12">
-        Our commitment to you
+        Transparency and Regulatory Compliance
+      </h2>
+      <p className="text-lg text-text-secondary mt-4 leading-relaxed">
+        In strict adherence to global advertising standards, including guidelines established by the UK ASA / CMA and the FTC, we ensure unambiguous disclosure regarding the presence of affiliate links. Any publication containing affiliate links will feature a clear statement of disclosure, empowering you to make fully informed decisions.
+      </p>
+
+      <h2 className="text-2xl font-bold mt-12">
+        Our Commitment to Excellence
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
         {[
           {
-            title: "Honest reviews",
-            text: "We state the rationale and the limitations of every product we recommend.",
+            title: "Unbiased Analysis",
+            text: "Our evaluations highlight both the strategic strengths and the actionable limitations of every platform.",
           },
           {
-            title: "No pay-for-coverage",
-            text: "We do not accept payment in exchange for favourable editorial coverage.",
+            title: "Zero Pay-for-Play",
+            text: "We strictly decline any compensation in exchange for preferential editorial treatment or skewed ratings.",
           },
           {
-            title: "Transparent methodology",
-            text: "Our review criteria are published on our About page for anyone to scrutinise.",
+            title: "Rigorous Methodology",
+            text: "Our standardized assessment criteria ensure every product is measured against the same stringent requirements.",
           },
           {
-            title: "Reader-first approach",
-            text: "If a product isn't right for UK small businesses, we say so — regardless of commission.",
+            title: "Audience First",
+            text: "Our primary fidelity is to our readers. We exclusively recommend solutions that genuinely drive growth and efficiency for your business.",
           },
         ].map((item) => (
           <div
