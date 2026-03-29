@@ -34,9 +34,9 @@ export default function HomePage() {
       <HeroSection />
       
       {/* Category Feeds representing an authoritative B2B Resource Hub */}
-      <CategoryArticlesBlock categorySlug="comparisons" categoryName="Comparisons" />
       <CategoryArticlesBlock categorySlug="accounting" categoryName="Accounting" />
       <CategoryArticlesBlock categorySlug="payroll" categoryName="Payroll & HR" />
+      <CategoryArticlesBlock categorySlug="comparisons" categoryName="Comparisons" />
       <CategoryArticlesBlock categorySlug="getting-paid" categoryName="Getting Paid" />
       <CategoryArticlesBlock categorySlug="tax-mtd" categoryName="Tax & MTD" />
 
