@@ -205,13 +205,13 @@
 }
 
 .article-content a {
-  color: var(--color-brand-accent);
+  color: #2563eb; /* Modern professional blue (Blue-600) */
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .article-content a:hover {
-  color: var(--color-accent-hover);
+  color: #1d4ed8; /* Darker blue on hover (Blue-700) */
 }
 
 /* External link indicator — subtle, professional (like Forbes/Wirecutter) */

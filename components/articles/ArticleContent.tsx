@@ -12,6 +12,7 @@ interface ArticleContentProps {
  */
 function isExternalUrl(href: string): boolean {
   if (!href) return false;
+  if (href.startsWith("/go/")) return true;
   if (href.startsWith("/") || href.startsWith("#")) return false;
   try {
     const url = new URL(href);
