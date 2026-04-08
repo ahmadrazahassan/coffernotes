@@ -47,3 +47,24 @@ export interface Subscriber {
   subscribed: boolean;
   created_at: string;
 }
+
+export interface RedirectLink {
+  id: string;
+  slug: string;
+  destination: string;
+  label: string | null;
+  nofollow: boolean;
+  sponsored: boolean;
+  click_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface RedirectClick {
+  id: string;
+  link_id: string;
+  clicked_at: string;
+  referrer_path: string | null;
+  user_agent: string | null;
+  ip_hash: string | null;
+}

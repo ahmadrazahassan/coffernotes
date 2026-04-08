@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useRef, useCallback, useState, useEffect } from "react";
-import { createClient } from "@/lib/supabase/client";
-import { toast } from "sonner";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -31,6 +29,9 @@ import {
   Undo,
   Redo,
 } from "lucide-react";
+import { EditorBubbleMenu } from "./editor/EditorBubbleMenu";
+import { LinkPopover } from "./editor/LinkPopover";
+import { ImageInsertDialog } from "./editor/ImageInsertDialog";
 
 const extensions = [
   StarterKit.configure({
@@ -59,6 +60,8 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
   const activeTabRef = useRef<string>("visual");
   const htmlRef = useRef(content);
   const [htmlValue, setHtmlValue] = useState(content);
+  const [showToolbarLink, setShowToolbarLink] = useState(false);
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -131,55 +134,6 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
     </button>
   );
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [uploadingImage, setUploadingImage] = useState(false);
-
-  const addLink = () => {
-    const url = window.prompt("Enter URL:");
-    if (url && editor) {
-      editor.chain().focus().setLink({ href: url }).run();
-    }
-  };
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file || !editor) return;
-
-    setUploadingImage(true);
-    const toastId = toast.loading("Uploading image...");
-
-    try {
-      const supabase = createClient();
-      const ext = file.name.split(".").pop();
-      const path = `article-content/${Date.now()}.${ext}`;
-
-      const { error } = await supabase.storage
-        .from("article-images")
-        .upload(path, file);
-
-      if (error) throw error;
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("article-images").getPublicUrl(path);
-
-      editor.chain().focus().setImage({ src: publicUrl }).run();
-      toast.success("Image uploaded", { id: toastId });
-    } catch (err: any) {
-      toast.error(err.message || "Failed to upload image", { id: toastId });
-    } finally {
-      setUploadingImage(false);
-      // Reset input
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
-    }
-  };
-
-  const triggerImageUpload = () => {
-    fileInputRef.current?.click();
-  };
-
   return (
     <div className="rounded-3xl border border-neutral-100 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
       <Tabs defaultValue="visual" onValueChange={handleTabChange}>
@@ -200,128 +154,157 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
 
         <TabsContent value="visual" className="mt-0 bg-white">
           {editor && (
-            <div className="flex flex-wrap gap-1 p-3 border-b border-neutral-100 bg-white">
-              <ToolbarButton
-                onClick={() => editor.chain().focus().toggleBold().run()}
-                active={editor.isActive("bold")}
-                title="Bold"
-              >
-                <Bold className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() => editor.chain().focus().toggleItalic().run()}
-                active={editor.isActive("italic")}
-                title="Italic"
-              >
-                <Italic className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() => editor.chain().focus().toggleUnderline().run()}
-                active={editor.isActive("underline")}
-                title="Underline"
-              >
-                <UnderlineIcon className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleHeading({ level: 2 }).run()
-                }
-                active={editor.isActive("heading", { level: 2 })}
-                title="Heading 2"
-              >
-                <Heading2 className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleHeading({ level: 3 }).run()
-                }
-                active={editor.isActive("heading", { level: 3 })}
-                title="Heading 3"
-              >
-                <Heading3 className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleBulletList().run()
-                }
-                active={editor.isActive("bulletList")}
-                title="Bullet List"
-              >
-                <List className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleOrderedList().run()
-                }
-                active={editor.isActive("orderedList")}
-                title="Ordered List"
-              >
-                <ListOrdered className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleBlockquote().run()
-                }
-                active={editor.isActive("blockquote")}
-                title="Blockquote"
-              >
-                <Quote className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor
-                    .chain()
-                    .focus()
-                    .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
-                    .run()
-                }
-                title="Insert Table"
-              >
-                <Table className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton onClick={addLink} title="Insert Link">
-                <LinkIcon className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton onClick={triggerImageUpload} title="Upload Image" active={uploadingImage}>
-                <ImageIcon className={`h-4 w-4 ${uploadingImage ? "animate-pulse" : ""}`} />
-              </ToolbarButton>
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                onChange={handleImageUpload} 
-                accept="image/*" 
-                className="hidden" 
+            <>
+              {/* ── Static Toolbar ─────────────────────────────── */}
+              <div className="flex flex-wrap items-center gap-1 p-3 border-b border-neutral-100 bg-white">
+                <ToolbarButton
+                  onClick={() => editor.chain().focus().toggleBold().run()}
+                  active={editor.isActive("bold")}
+                  title="Bold"
+                >
+                  <Bold className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() => editor.chain().focus().toggleItalic().run()}
+                  active={editor.isActive("italic")}
+                  title="Italic"
+                >
+                  <Italic className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() => editor.chain().focus().toggleUnderline().run()}
+                  active={editor.isActive("underline")}
+                  title="Underline"
+                >
+                  <UnderlineIcon className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 2 }).run()
+                  }
+                  active={editor.isActive("heading", { level: 2 })}
+                  title="Heading 2"
+                >
+                  <Heading2 className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 3 }).run()
+                  }
+                  active={editor.isActive("heading", { level: 3 })}
+                  title="Heading 3"
+                >
+                  <Heading3 className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleBulletList().run()
+                  }
+                  active={editor.isActive("bulletList")}
+                  title="Bullet List"
+                >
+                  <List className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleOrderedList().run()
+                  }
+                  active={editor.isActive("orderedList")}
+                  title="Ordered List"
+                >
+                  <ListOrdered className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleBlockquote().run()
+                  }
+                  active={editor.isActive("blockquote")}
+                  title="Blockquote"
+                >
+                  <Quote className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor
+                      .chain()
+                      .focus()
+                      .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+                      .run()
+                  }
+                  title="Insert Table"
+                >
+                  <Table className="h-4 w-4" />
+                </ToolbarButton>
+
+                {/* ── Link button with inline popover ──────── */}
+                <div className="relative">
+                  <ToolbarButton
+                    onClick={() => setShowToolbarLink(!showToolbarLink)}
+                    active={editor.isActive("link") || showToolbarLink}
+                    title="Insert Link"
+                  >
+                    <LinkIcon className="h-4 w-4" />
+                  </ToolbarButton>
+
+                  {showToolbarLink && (
+                    <div className="absolute top-full left-0 mt-2 z-50 flex items-center px-3 py-2 rounded-2xl bg-neutral-900/95 backdrop-blur-xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
+                      <LinkPopover
+                        editor={editor}
+                        onClose={() => setShowToolbarLink(false)}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* ── Image button ─────────────────────────── */}
+                <ToolbarButton
+                  onClick={() => setImageDialogOpen(true)}
+                  title="Insert Image"
+                >
+                  <ImageIcon className="h-4 w-4" />
+                </ToolbarButton>
+
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().setHorizontalRule().run()
+                  }
+                  title="Horizontal Rule"
+                >
+                  <Minus className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() =>
+                    editor.chain().focus().toggleCodeBlock().run()
+                  }
+                  active={editor.isActive("codeBlock")}
+                  title="Code Block"
+                >
+                  <Code className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() => editor.chain().focus().undo().run()}
+                  title="Undo"
+                >
+                  <Undo className="h-4 w-4" />
+                </ToolbarButton>
+                <ToolbarButton
+                  onClick={() => editor.chain().focus().redo().run()}
+                  title="Redo"
+                >
+                  <Redo className="h-4 w-4" />
+                </ToolbarButton>
+              </div>
+
+              {/* ── Bubble Menu (appears on text selection) ──── */}
+              <EditorBubbleMenu editor={editor} />
+
+              {/* ── Image Insert Dialog ─────────────────────── */}
+              <ImageInsertDialog
+                editor={editor}
+                open={imageDialogOpen}
+                onOpenChange={setImageDialogOpen}
               />
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().setHorizontalRule().run()
-                }
-                title="Horizontal Rule"
-              >
-                <Minus className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() =>
-                  editor.chain().focus().toggleCodeBlock().run()
-                }
-                active={editor.isActive("codeBlock")}
-                title="Code Block"
-              >
-                <Code className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() => editor.chain().focus().undo().run()}
-                title="Undo"
-              >
-                <Undo className="h-4 w-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                onClick={() => editor.chain().focus().redo().run()}
-                title="Redo"
-              >
-                <Redo className="h-4 w-4" />
-              </ToolbarButton>
-            </div>
+            </>
           )}
           <EditorContent editor={editor} />
         </TabsContent>
