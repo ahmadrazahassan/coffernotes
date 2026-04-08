@@ -62,14 +62,18 @@ export async function GET(
   const ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
   const ipHash = await hashIP(ip);
 
-  // Fire-and-forget analytics (don't block the redirect)
-  void supabase.rpc("increment_click_count", { link_slug: slug });
-  void supabase.from("redirect_clicks").insert({
-    link_id: link.id,
-    referrer_path: referrerPath,
-    user_agent: userAgent,
-    ip_hash: ipHash,
-  });
+  // Ensure analytics are actually dispatched to the database.
+  // We use Promise.allSettled so that if tracking fails for any reason,
+  // the user is still successfully redirected.
+  await Promise.allSettled([
+    supabase.rpc("increment_click_count", { link_slug: slug }),
+    supabase.from("redirect_clicks").insert({
+      link_id: link.id,
+      referrer_path: referrerPath,
+      user_agent: userAgent,
+      ip_hash: ipHash,
+    }),
+  ]);
 
   // 302 redirect with security headers
   const response = NextResponse.redirect(link.destination, 302);
