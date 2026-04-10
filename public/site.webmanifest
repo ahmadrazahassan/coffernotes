@@ -1,0 +1,23 @@
+{
+  "name": "Finlytic",
+  "short_name": "Finlytic",
+  "description": "Independent accounting software reviews for UK small businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#16382F",
+  "theme_color": "#16382F",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -36,8 +36,25 @@ export const metadata: Metadata = {
   },
   description: SITE_META_DESCRIPTION,
   icons: {
-    icon: "/icon.svg",
+    // 16×16 & 32×32 for browser tabs
+    icon: [
+      { url: "/icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+      // 192×192 — Google Search picks this up for the favicon in results
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      // 512×512 — PWA splash + high-DPI displays
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      // SVG fallback for modern browsers
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    // Apple devices (iOS home screen, Safari pinned tab)
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    // Classic favicon.ico for legacy browser support
+    shortcut: "/favicon.ico",
   },
+  manifest: "/site.webmanifest",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK
   ),
@@ -47,11 +64,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: "/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: `${SITE_NAME} logo`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_META_DESCRIPTION,
+    images: ["/icon-512.png"],
   },
   // Impact site verification (Sage UK / impact.com) — homepage <head>
   other: {
@@ -71,6 +97,12 @@ export default function RootLayout({
     name: SITE_NAME,
     url: BASE_URL,
     description: SITE_META_DESCRIPTION,
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE_URL}/icon-512.png`,
+      width: 512,
+      height: 512,
+    },
     sameAs: [],
   };
 
