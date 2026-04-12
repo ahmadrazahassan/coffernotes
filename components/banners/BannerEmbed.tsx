@@ -9,6 +9,8 @@ import type { BannerEmbedMode } from "@/types/banners";
  * Third-party ad HTML runs inside a sandboxed iframe by default so scripts do not
  * run in the parent page. Do not pass this HTML through DOMPurify — networks rely on
  * script/iframe tags. Sandbox tokens are a tradeoff: tighten if a creative fails to load.
+ * `allow-top-navigation-by-user-activation` lets anchor clicks open the parent window
+ * (typical for ad creatives); full `allow-top-navigation` is avoided as a security best practice.
  *
  * Iframe height: browsers default iframes to ~150px tall, which causes inner scrollbars
  * for standard IAB units. We sync height to the inner document (see mountAdHtmlInIframe).
@@ -58,7 +60,7 @@ export function BannerEmbed({
         title="Advertisement"
         className="w-full max-w-full border-0 bg-transparent align-middle"
         style={{ display: "block", overflow: "hidden" }}
-        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-forms"
+        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-forms allow-top-navigation-by-user-activation"
         loading={lazyIframe ? "lazy" : "eager"}
       />
     </div>

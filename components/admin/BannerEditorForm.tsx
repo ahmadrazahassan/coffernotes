@@ -65,7 +65,7 @@ function AdminBannerPreview({ html }: { html: string }) {
         title="Banner preview"
         className="w-full rounded-md border border-neutral-200 bg-white"
         style={{ display: "block", overflow: "hidden" }}
-        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-forms"
+        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-forms allow-top-navigation-by-user-activation"
       />
     </div>
   );
