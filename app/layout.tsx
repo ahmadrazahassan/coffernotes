@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ClientVisibility } from "@/components/layout/ClientVisibility";
+import { BannerSlot } from "@/components/banners/BannerSlot";
+import { GlobalAnchorSlot } from "@/components/banners/GlobalAnchorSlot";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   SITE_META_DESCRIPTION,
@@ -86,7 +88,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -145,13 +147,24 @@ export default function RootLayout({
         </span>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
+        <BannerSlot
+          slotKey="global_top_leaderboard"
+          className="flex w-full justify-center px-6 pt-2"
+          lazyIframe={false}
+        />
         <ClientVisibility>
           <Navbar />
         </ClientVisibility>
         <main>{children}</main>
+        <BannerSlot
+          slotKey="footer_above"
+          className="flex w-full justify-center px-6 py-6"
+          lazyIframe
+        />
         <ClientVisibility>
           <Footer />
         </ClientVisibility>
+        <GlobalAnchorSlot />
         <Analytics />
         <Toaster />
       </body>

@@ -2,11 +2,14 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { ArticleHeader } from "@/components/articles/ArticleHeader";
-import { ArticleContent } from "@/components/articles/ArticleContent";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { Separator } from "@/components/ui/separator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ArticleBodyWithBanners } from "@/components/banners/ArticleBodyWithBanners";
+import { BannerSlot } from "@/components/banners/BannerSlot";
+import { BannerEmbed } from "@/components/banners/BannerEmbed";
+import { getBannerForSlot } from "@/lib/banners/resolve";
 import { SITE_NAME, SITE_URL_FALLBACK } from "@/lib/constants";
 import type { Article } from "@/types";
 
@@ -102,6 +105,11 @@ export default async function ArticlePage({ params }: Props) {
     (ac: any) => ac.category?.slug === categorySlug
   )?.category?.slug || categorySlug;
   const articleUrl = `${BASE_URL}/${categorySlugForUrl}/${article.slug}`;
+  const articlePath = `/${categorySlugForUrl}/${article.slug}`;
+
+  const sidebarBanner = await getBannerForSlot("sidebar_sticky", {
+    pathname: articlePath,
+  });
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -129,10 +137,50 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <JsonLd data={articleSchema} />
-      <article className="max-w-4xl mx-auto px-6 py-16">
-        <ArticleHeader article={article} />
-        <ArticleContent content={article.content} />
-      </article>
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div
+          className={
+            sidebarBanner
+              ? "lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10 xl:gap-12"
+              : ""
+          }
+        >
+          <div className={sidebarBanner ? "" : "max-w-4xl mx-auto"}>
+            <article>
+              <ArticleHeader article={article} />
+              <BannerSlot
+                slotKey="article_below_header"
+                pathname={articlePath}
+                className="mt-6 flex justify-center"
+                lazyIframe
+              />
+              <ArticleBodyWithBanners
+                content={article.content}
+                pathname={articlePath}
+              />
+              <BannerSlot
+                slotKey="article_below_content"
+                pathname={articlePath}
+                className="mt-10 flex justify-center"
+                lazyIframe
+              />
+            </article>
+          </div>
+          {sidebarBanner ? (
+            <aside className="hidden lg:block w-full min-w-0">
+              <div className="sticky top-28 flex w-full justify-center">
+                <BannerEmbed
+                  html={sidebarBanner.html}
+                  embedMode={sidebarBanner.embed_mode}
+                  bannerId={sidebarBanner.id}
+                  lazyIframe
+                  className="w-full max-w-[300px] flex justify-center"
+                />
+              </div>
+            </aside>
+          ) : null}
+        </div>
+      </div>
 
       {related.length > 0 && (
         <div className="max-w-4xl mx-auto px-6 pb-10">

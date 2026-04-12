@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { ArticleCard } from "@/components/articles/ArticleCard";
+import { BannerSlot } from "@/components/banners/BannerSlot";
 import { LoadMoreButton } from "./load-more";
 import { SITE_URL_FALLBACK } from "@/lib/constants";
 import type { Article, Category } from "@/types";
@@ -70,14 +71,34 @@ export default async function CategoryPage({ params }: Props) {
   const items =
     (junctions?.map((j: any) => j.article).filter(Boolean) as Article[]) || [];
 
+  const firstRow = items.slice(0, 3);
+  const restItems = items.slice(3);
+  const categoryPath = `/${slug}`;
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-20">
       <h1 className="text-4xl font-bold">{cat.name}</h1>
       <p className="text-lg text-text-secondary mt-3">{cat.description}</p>
 
+      <BannerSlot
+        slotKey="category_below_header"
+        pathname={categoryPath}
+        className="mt-8 flex justify-center"
+        lazyIframe
+      />
+
       {items.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          {items.map((article) => (
+          {firstRow.map((article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
+          <BannerSlot
+            slotKey="category_in_grid"
+            pathname={categoryPath}
+            className="col-span-full flex justify-center py-2"
+            lazyIframe
+          />
+          {restItems.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>

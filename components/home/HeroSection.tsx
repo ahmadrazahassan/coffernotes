@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { SITE_TAGLINE, THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
+import { BannerSlot } from "@/components/banners/BannerSlot";
 import { formatDate } from "@/lib/utils";
 import type { Article } from "@/types";
 
@@ -183,6 +184,15 @@ export async function HeroSection() {
                 </h3>
               </Link>
             )}
+
+            <div className="hidden lg:block mt-8">
+              <BannerSlot
+                slotKey="home_hero_rail"
+                pathname="/"
+                className="flex justify-center"
+                lazyIframe
+              />
+            </div>
           </div>
         </div>
       </div>
