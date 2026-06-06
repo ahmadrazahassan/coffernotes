@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Upload, Globe, Link as LinkIcon, ImageIcon } from "lucide-react";
+import { CldUploadWidget } from "next-cloudinary";
 
 interface ImageInsertDialogProps {
   editor: Editor;
@@ -52,49 +53,6 @@ export function ImageInsertDialog({
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) resetState();
     onOpenChange(newOpen);
-  };
-
-  // ── Upload handler ──────────────────────────────────────────────
-  const uploadFile = async (file: File) => {
-    setUploading(true);
-    const toastId = toast.loading("Uploading image…");
-
-    try {
-      const supabase = createClient();
-      const ext = file.name.split(".").pop();
-      const path = `article-content/${Date.now()}.${ext}`;
-
-      const { error } = await supabase.storage
-        .from("article-images")
-        .upload(path, file);
-
-      if (error) throw error;
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("article-images").getPublicUrl(path);
-
-      setUploadedUrl(publicUrl);
-      toast.success("Image uploaded", { id: toastId });
-    } catch (err: any) {
-      toast.error(err.message || "Failed to upload image", { id: toastId });
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) uploadFile(file);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) {
-      uploadFile(file);
-    }
   };
 
   // ── URL preview validation ──────────────────────────────────────
@@ -173,7 +131,6 @@ export function ImageInsertDialog({
                 <button
                   onClick={() => {
                     setUploadedUrl("");
-                    if (fileInputRef.current) fileInputRef.current.value = "";
                   }}
                   className="text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
                 >
@@ -181,46 +138,30 @@ export function ImageInsertDialog({
                 </button>
               </div>
             ) : (
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setDragOver(true);
-                }}
-                onDragLeave={() => setDragOver(false)}
-                onDrop={handleDrop}
-                className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed py-10 px-6 transition-all cursor-pointer ${
-                  dragOver
-                    ? "border-neutral-900 bg-neutral-50"
-                    : "border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50/50"
-                }`}
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <div
-                  className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-colors ${
-                    dragOver
-                      ? "bg-neutral-900 text-white"
-                      : "bg-neutral-100 text-neutral-500"
-                  }`}
+              <div className="py-10 flex justify-center">
+                <CldUploadWidget
+                  signatureEndpoint="/api/sign-cloudinary-params"
+                  onSuccess={(result) => {
+                    if (result.info && typeof result.info === "object" && "secure_url" in result.info) {
+                      setUploadedUrl(result.info.secure_url as string);
+                    }
+                  }}
+                  options={{
+                    multiple: false,
+                    folder: "article-content",
+                  }}
                 >
-                  <Upload className={`w-5 h-5 ${uploading ? "animate-pulse" : ""}`} />
-                </div>
-                <p className="text-sm font-medium text-neutral-700 mb-1">
-                  {uploading
-                    ? "Uploading…"
-                    : dragOver
-                    ? "Drop to upload"
-                    : "Click to upload or drag and drop"}
-                </p>
-                <p className="text-xs text-neutral-400">
-                  PNG, JPG, GIF, WebP up to 5 MB
-                </p>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  className="hidden"
-                />
+                  {({ open }) => (
+                    <button
+                      type="button"
+                      onClick={() => open()}
+                      className="flex items-center justify-center gap-2 rounded-2xl h-12 px-6 bg-neutral-900 text-white hover:bg-neutral-800 text-sm font-medium shadow-sm"
+                    >
+                      <Upload className="w-4 h-4" />
+                      Upload to Cloudinary
+                    </button>
+                  )}
+                </CldUploadWidget>
               </div>
             )}
           </TabsContent>

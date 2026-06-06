@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
@@ -17,14 +19,17 @@ export function ArticleCard({ article }: ArticleCardProps) {
       className="rounded-2xl border border-border overflow-hidden hover:shadow-sm transition-shadow block"
     >
       {article.thumbnail_url ? (
-        <Image
+        <CldImage
           src={article.thumbnail_url}
           alt={article.title}
           width={600}
           height={340}
-          quality={THUMBNAIL_IMAGE_QUALITY}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           className="aspect-video object-cover w-full"
+          crop={{
+            type: 'auto',
+            source: true
+          }}
         />
       ) : (
         <div className="aspect-video bg-surface w-full" />

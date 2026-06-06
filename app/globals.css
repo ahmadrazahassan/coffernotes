@@ -49,47 +49,47 @@
 
   /* Finlytic brand tokens */
   --color-surface: #F8FAFC;
-  --color-text-primary: #0F172A;
+  --color-text-primary: #0a0e09;
   --color-text-secondary: #64748B;
-  --color-brand-accent: #1A1A1A;
-  --color-accent-hover: #111111;
+  --color-brand-accent: #0055ff;
+  --color-accent-hover: #0044cc;
   --color-tag-bg: #F5F5F5;
   --color-tag-text: #333333;
 }
 
 :root {
   --background: #FFFFFF;
-  --foreground: #0F172A;
+  --foreground: #0a0e09;
   --card: #FFFFFF;
-  --card-foreground: #0F172A;
+  --card-foreground: #0a0e09;
   --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
-  --primary: #1A1A1A;
+  --popover-foreground: #0a0e09;
+  --primary: #0055ff;
   --primary-foreground: #FFFFFF;
   --secondary: #F8FAFC;
-  --secondary-foreground: #0F172A;
+  --secondary-foreground: #0a0e09;
   --muted: #F8FAFC;
   --muted-foreground: #64748B;
   --accent: #F8FAFC;
-  --accent-foreground: #0F172A;
+  --accent-foreground: #0a0e09;
   --destructive: #dc2626;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #1A1A1A;
-  --chart-1: #1A1A1A;
-  --chart-2: #111111;
+  --ring: #0055ff;
+  --chart-1: #0055ff;
+  --chart-2: #0a0e09;
   --chart-3: #333333;
   --chart-4: #64748B;
-  --chart-5: #0F172A;
-  --radius: 0.75rem;
+  --chart-5: #0a0e09;
+  --radius: 1.5rem; /* Pill-like radius for components */
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #0F172A;
-  --sidebar-primary: #1A1A1A;
+  --sidebar-foreground: #0a0e09;
+  --sidebar-primary: #0055ff;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #F8FAFC;
-  --sidebar-accent-foreground: #0F172A;
+  --sidebar-accent-foreground: #0a0e09;
   --sidebar-border: #E2E8F0;
-  --sidebar-ring: #1A1A1A;
+  --sidebar-ring: #0055ff;
 }
 
 @layer base {

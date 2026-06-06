@@ -17,6 +17,7 @@ import { slugify, calculateReadTime } from "@/lib/utils";
 import { toast } from "sonner";
 import type { Category } from "@/types";
 import Image from "next/image";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -230,12 +231,28 @@ export default function NewArticlePage() {
             <div>
               <label className="text-sm font-medium text-neutral-900 mb-1.5 block">Thumbnail URL</label>
               <div className="flex gap-2 mb-2">
-                <Input
-                  placeholder="https://assets.finlytic.uk/articles/vat-compliance-checklist-cover.jpg"
-                  value={thumbnailUrl}
-                  onChange={(e) => setThumbnailUrl(e.target.value)}
-                  className="rounded-2xl h-11 bg-neutral-50/50 border-neutral-200 text-neutral-900 focus-visible:ring-1 focus-visible:ring-neutral-900 focus-visible:border-neutral-900 focus-visible:bg-white transition-all shadow-none placeholder:text-neutral-400 flex-1 min-w-0"
-                />
+                <CldUploadWidget
+                  signatureEndpoint="/api/sign-cloudinary-params"
+                  onSuccess={(result) => {
+                    if (result.info && typeof result.info === "object" && "secure_url" in result.info) {
+                      setThumbnailUrl(result.info.secure_url as string);
+                    }
+                  }}
+                  options={{
+                    multiple: false,
+                    folder: "article-thumbnails",
+                  }}
+                >
+                  {({ open }) => (
+                    <button
+                      type="button"
+                      onClick={() => open()}
+                      className="rounded-2xl h-11 px-4 whitespace-nowrap bg-neutral-900 text-white hover:bg-neutral-800 text-xs font-medium shadow-sm flex-shrink-0 flex items-center justify-center gap-2 flex-1"
+                    >
+                      Upload to Cloudinary
+                    </button>
+                  )}
+                </CldUploadWidget>
                 {thumbnailUrl && (
                   <button
                     type="button"
@@ -246,6 +263,12 @@ export default function NewArticlePage() {
                   </button>
                 )}
               </div>
+              <Input
+                placeholder="Or paste an image URL..."
+                value={thumbnailUrl}
+                onChange={(e) => setThumbnailUrl(e.target.value)}
+                className="rounded-2xl h-11 bg-neutral-50/50 border-neutral-200 text-neutral-900 focus-visible:ring-1 focus-visible:ring-neutral-900 focus-visible:border-neutral-900 focus-visible:bg-white transition-all shadow-none placeholder:text-neutral-400 w-full"
+              />
               
               {thumbnailUrl && (
                 <div className="mt-3 relative rounded-2xl overflow-hidden border border-neutral-100 bg-neutral-50 aspect-video flex items-center justify-center min-h-[158px]">

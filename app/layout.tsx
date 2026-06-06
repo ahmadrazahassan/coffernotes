@@ -38,21 +38,9 @@ export const metadata: Metadata = {
   },
   description: SITE_META_DESCRIPTION,
   icons: {
-    // 16×16, 32×32, 48x48 for browser tabs
+    // SVG logo as requested
     icon: [
-      { url: "/icon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
-      // 192×192 — Google Search picks this up for the favicon in results
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      // 512×512 — PWA splash + high-DPI displays
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-      // SVG fallback for modern browsers
       { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    // Apple devices (iOS home screen, Safari pinned tab)
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     // Classic favicon.ico for legacy browser support
     shortcut: "/favicon.ico",
@@ -124,9 +112,6 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/icon-16.png" sizes="16x16" type="image/png" />
-        <link rel="icon" href="/icon-32.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/icon-48.png" sizes="48x48" type="image/png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18036529064"
           strategy="afterInteractive"

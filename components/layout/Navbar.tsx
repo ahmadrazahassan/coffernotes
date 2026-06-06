@@ -23,12 +23,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-transparent">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-6">
+      <div className="mx-auto flex h-20 max-w-[90rem] items-center justify-between gap-4 px-6 md:px-8">
         <Logo />
 
         <nav className="hidden xl:flex items-center gap-3">
 
-          <div className="inline-flex items-center rounded-md bg-neutral-950 p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28)] ring-1 ring-neutral-900 shrink-0">
+          <div className="inline-flex items-center rounded-full bg-primary/85 backdrop-blur-md p-1.5 shadow-[0_8px_32px_rgba(0,85,255,0.3)] ring-1 ring-white/20 shrink-0 transition-all duration-300">
             {CATEGORIES.map((cat) => {
               const href = `/${cat.slug}`;
               const active = isActive(href);
@@ -36,10 +36,10 @@ export function Navbar() {
                 <Link
                   key={cat.slug}
                   href={href}
-                  className={`rounded-[3px] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.06em] transition-colors ${
+                  className={`rounded-full px-4 py-2 text-[12px] font-bold uppercase tracking-[0.06em] transition-all duration-300 ${
                     active
-                      ? "bg-white text-neutral-950"
-                      : "text-white/90 hover:bg-white/10 hover:text-white"
+                      ? "bg-white text-primary shadow-sm"
+                      : "text-white/90 hover:bg-white/20 hover:text-white hover:shadow-sm"
                   }`}
                 >
                   {cat.name}
@@ -48,7 +48,7 @@ export function Navbar() {
             })}
             <Link
               href="/#newsletter"
-              className="ml-1 rounded-[3px] bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.06em] text-neutral-950 transition-colors hover:bg-neutral-200"
+              className="ml-2 rounded-full bg-white px-5 py-2 text-[12px] font-bold uppercase tracking-[0.06em] text-primary transition-all duration-300 hover:bg-neutral-50 hover:scale-105 hover:shadow-md active:scale-95"
             >
               Subscribe
             </Link>
@@ -56,7 +56,7 @@ export function Navbar() {
         </nav>
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-          <SheetTrigger className="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-neutral-950 text-white transition-colors hover:bg-neutral-800 xl:hidden">
+          <SheetTrigger className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/90 text-white backdrop-blur-md transition-all duration-300 hover:bg-primary xl:hidden">
             <Menu className="h-4 w-4" />
             <span className="sr-only">Open navigation menu</span>
           </SheetTrigger>

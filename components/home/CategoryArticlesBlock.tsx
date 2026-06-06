@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { createClient } from "@/lib/supabase/server";
 import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
@@ -68,14 +68,17 @@ export async function CategoryArticlesBlock({
           >
             <div className="overflow-hidden bg-slate-100">
               {lead.thumbnail_url ? (
-                <Image
+                <CldImage
                   src={lead.thumbnail_url}
                   alt={lead.title}
                   width={1200}
                   height={675}
-                  quality={THUMBNAIL_IMAGE_QUALITY}
                   sizes="(max-width: 1024px) 100vw, 1200px"
                   className="w-full aspect-video object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                  crop={{
+                    type: 'auto',
+                    source: true
+                  }}
                 />
               ) : (
                 <div className="w-full aspect-video bg-slate-200" />
@@ -109,14 +112,17 @@ export async function CategoryArticlesBlock({
                 >
                   <div className="overflow-hidden bg-slate-100 shrink-0">
                     {article.thumbnail_url ? (
-                      <Image
+                      <CldImage
                         src={article.thumbnail_url}
                         alt={article.title}
                         width={384}
                         height={256}
-                        quality={THUMBNAIL_IMAGE_QUALITY}
                         sizes="(max-width: 768px) 128px, 256px"
                         className="w-32 h-24 object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                        crop={{
+                          type: 'auto',
+                          source: true
+                        }}
                       />
                     ) : (
                       <div className="w-32 h-24 bg-slate-200" />

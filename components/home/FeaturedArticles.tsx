@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { createClient } from "@/lib/supabase/server";
 import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
@@ -43,14 +43,17 @@ export async function FeaturedArticles() {
             >
               <div className="overflow-hidden rounded-xl">
                 {article.thumbnail_url ? (
-                  <Image
+                  <CldImage
                     src={article.thumbnail_url}
                     alt={article.title}
                     width={500}
                     height={300}
-                    quality={THUMBNAIL_IMAGE_QUALITY}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     className="w-full aspect-[5/3] object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    crop={{
+                      type: 'auto',
+                      source: true
+                    }}
                   />
                 ) : (
                   <div className="w-full aspect-[5/3] bg-surface rounded-xl" />
@@ -95,14 +98,17 @@ export async function FeaturedArticles() {
                   className="group flex gap-4"
                 >
                   {article.thumbnail_url ? (
-                    <Image
+                    <CldImage
                       src={article.thumbnail_url}
                       alt={article.title}
                       width={160}
                       height={160}
-                      quality={THUMBNAIL_IMAGE_QUALITY}
                       sizes="96px"
                       className="w-16 h-16 rounded-lg object-cover flex-shrink-0 group-hover:scale-[1.04] transition-transform duration-300"
+                      crop={{
+                        type: 'auto',
+                        source: true
+                      }}
                     />
                   ) : (
                     <div className="w-16 h-16 rounded-lg bg-surface flex-shrink-0" />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_TAGLINE, THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
@@ -85,15 +85,18 @@ export async function HeroSection() {
             >
               <div className="overflow-hidden bg-slate-100">
                 {lead.thumbnail_url ? (
-                  <Image
+                  <CldImage
                     src={lead.thumbnail_url}
                     alt={lead.title}
                     width={960}
                     height={540}
-                    quality={THUMBNAIL_IMAGE_QUALITY}
                     sizes="(max-width: 1024px) 100vw, 960px"
                     className="w-full aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                     priority
+                    crop={{
+                      type: 'auto',
+                      source: true
+                    }}
                   />
                 ) : (
                   <div className="w-full aspect-[16/9] bg-slate-200" />
@@ -167,14 +170,17 @@ export async function HeroSection() {
                 className="group block mt-5 pt-5 border-t border-border"
               >
                 {sidebar.thumbnail_url ? (
-                  <Image
+                  <CldImage
                     src={sidebar.thumbnail_url}
                     alt={sidebar.title}
                     width={400}
                     height={225}
-                    quality={THUMBNAIL_IMAGE_QUALITY}
                     sizes="(max-width: 1024px) 33vw, 400px"
                     className="w-full aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    crop={{
+                      type: 'auto',
+                      source: true
+                    }}
                   />
                 ) : (
                   <div className="w-full aspect-[16/9] bg-slate-100" />

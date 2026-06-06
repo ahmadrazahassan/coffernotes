@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { createClient } from "@/lib/supabase/server";
 import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
@@ -50,14 +50,17 @@ export async function LatestArticles() {
             >
               {highlight.thumbnail_url ? (
                 <div className="overflow-hidden bg-slate-100">
-                  <Image
+                  <CldImage
                     src={highlight.thumbnail_url}
                     alt={highlight.title}
                     width={600}
                     height={400}
-                    quality={THUMBNAIL_IMAGE_QUALITY}
                     sizes="(max-width: 1024px) 100vw, 600px"
                     className="w-full aspect-[3/2] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    crop={{
+                      type: 'auto',
+                      source: true
+                    }}
                   />
                 </div>
               ) : (
@@ -127,14 +130,17 @@ export async function LatestArticles() {
                     </div>
                   </div>
                   {article.thumbnail_url ? (
-                    <Image
+                    <CldImage
                       src={article.thumbnail_url}
                       alt={article.title}
                       width={240}
                       height={160}
-                      quality={THUMBNAIL_IMAGE_QUALITY}
                       sizes="128px"
                       className="w-32 h-24 object-cover flex-shrink-0 group-hover:scale-[1.03] transition-transform duration-300"
+                      crop={{
+                        type: 'auto',
+                        source: true
+                      }}
                     />
                   ) : (
                     <div className="w-32 h-24 bg-slate-200 flex-shrink-0" />

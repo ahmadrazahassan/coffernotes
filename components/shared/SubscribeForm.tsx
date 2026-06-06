@@ -44,6 +44,7 @@ export function SubscribeForm({ compact = false }: { compact?: boolean }) {
         onChange={(e) => setEmail(e.target.value)}
         className={`rounded-xl flex-1 ${compact ? "h-9 text-sm" : ""}`}
         required
+        suppressHydrationWarning
       />
       <Button
         type="submit"

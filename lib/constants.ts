@@ -5,13 +5,13 @@
 export const THUMBNAIL_IMAGE_QUALITY = 90;
 
 /** Public site brand (display + SEO). */
-export const SITE_NAME = "Finlytic";
+export const SITE_NAME = "Accounting software Pilot";
 
 export const SITE_TAGLINE =
   "Smart accounting software reviews for UK small businesses.";
 
 export const SITE_META_DESCRIPTION =
-  "Finlytic is an independent UK review and comparison site for small business accounting software — Sage, Xero, and QuickBooks.";
+  "Accounting software Pilot is an independent UK review and comparison site for small business accounting software — Sage, Xero, and QuickBooks.";
 
 /** Canonical base URL when `NEXT_PUBLIC_SITE_URL` is unset. */
 export const SITE_URL_FALLBACK = "https://www.finlytic.uk";

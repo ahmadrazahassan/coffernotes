@@ -2,22 +2,22 @@ import Link from "next/link";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <Link href="/" className={`flex items-center gap-2 ${className}`}>
+    <Link href="/" className={`flex items-center gap-2 shrink-0 ${className}`}>
       <svg
-        width="26"
-        height="26"
-        viewBox="0 0 24 24"
-        fill="currentColor"
+        width="32"
+        height="32"
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
+        className="shrink-0"
       >
-        {/* Brand mark (symbol unchanged) */}
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M3.1 13.2c0-5.3 3.7-8.9 7.2-9.6 2.8-.6 4.6 1.8 5 4.8.3 2.8.4 6.1.8 8.3.3 1.9 1 3.3 2.5 4.3.6.4.7 1.2.2 1.7-2.1 1.9-6 1.8-9 .4-3.7-1.8-6.7-5-6.7-10Zm11 2.2c.6-2.5 2.4-4.6 4.8-5.6 1-.4 2 .5 1.8 1.5-.6 3.4-2.5 6.6-5.4 8.2-1 .6-2.2-.1-2.2-1.2 0-.9.4-1.9 1-2.9Z"
-        />
+        <path d="M15 35 Q 25 80 50 85 Q 40 50 30 35 Z" fill="#cce0ff"/>
+        <path d="M85 35 Q 75 80 50 85 Q 60 50 70 35 Z" fill="#cce0ff"/>
+        <path d="M50 25 Q 65 50 50 85 Q 35 50 50 25 Z" fill="#cce0ff"/>
+        <path d="M50 40 C 70 65 65 90 50 90 C 35 90 30 65 50 40 Z" fill="#0055ff"/>
       </svg>
-      <span className="text-[17px] font-bold tracking-[0.04em]">Finlytic</span>
+      <span className="text-[14px] font-bold tracking-[0.04em] whitespace-nowrap">Accounting software Pilot</span>
     </Link>
   );
 }
