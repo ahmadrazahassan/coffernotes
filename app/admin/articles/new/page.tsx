@@ -243,10 +243,16 @@ export default function NewArticlePage() {
                     folder: "article-thumbnails",
                   }}
                 >
-                  {({ open }) => (
+                  {(props: any) => (
                     <button
                       type="button"
-                      onClick={() => open()}
+                      onClick={() => {
+                        if (props && typeof props.open === 'function') {
+                          props.open();
+                        } else {
+                          toast.error("Upload widget failed to load (check your ad blocker).");
+                        }
+                      }}
                       className="rounded-2xl h-11 px-4 whitespace-nowrap bg-neutral-900 text-white hover:bg-neutral-800 text-xs font-medium shadow-sm flex-shrink-0 flex items-center justify-center gap-2 flex-1"
                     >
                       Upload to Cloudinary

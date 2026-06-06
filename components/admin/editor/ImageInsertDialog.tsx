@@ -151,10 +151,16 @@ export function ImageInsertDialog({
                     folder: "article-content",
                   }}
                 >
-                  {({ open }) => (
+                  {(props: any) => (
                     <button
                       type="button"
-                      onClick={() => open()}
+                      onClick={() => {
+                        if (props && typeof props.open === 'function') {
+                          props.open();
+                        } else {
+                          toast.error("Upload widget failed to load (check your ad blocker).");
+                        }
+                      }}
                       className="flex items-center justify-center gap-2 rounded-2xl h-12 px-6 bg-neutral-900 text-white hover:bg-neutral-800 text-sm font-medium shadow-sm"
                     >
                       <Upload className="w-4 h-4" />
