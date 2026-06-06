@@ -14,9 +14,9 @@ export const SITE_META_DESCRIPTION =
   "Accounting software Pilot is an independent UK review and comparison site for small business accounting software — Sage, Xero, and QuickBooks.";
 
 /** Canonical base URL when `NEXT_PUBLIC_SITE_URL` is unset. */
-export const SITE_URL_FALLBACK = "https://www.finlytic.uk";
+export const SITE_URL_FALLBACK = "https://www.accountingsoftwarepilot.com";
 
-export const SITE_CONTACT_EMAIL = "info@finlytic.uk";
+export const SITE_CONTACT_EMAIL = "info@accountingsoftwarepilot.com";
 
 /** Shown on Privacy Policy and Terms of Use (update when legal text changes). */
 export const LEGAL_EFFECTIVE_DATE = "30 March 2026";

@@ -45,7 +45,7 @@ export default function AboutPage() {
         {/* Top Section: Intro */}
         <div className="relative z-10 max-w-4xl">
           <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-extrabold tracking-[-0.03em] text-neutral-900 mb-8 leading-[1]">
-            Hi, I&rsquo;m Nadeem.
+            Hi, I&rsquo;m Abdul Rehman ch.
           </h1>
           <p className="text-2xl md:text-3xl lg:text-4xl text-neutral-600 leading-[1.4] font-medium tracking-tight">
             Based in London, I founded {SITE_NAME} with a single goal: to give UK businesses a jargon-free, deeply researched resource for evaluating the software that runs their finances. Fuelled by a passion for financial clarity, my team and I have a deep desire to excel in simplifying everything from Sage and Xero setups to strict HMRC compliance.
