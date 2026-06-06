@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { CloudinaryImage as CldImage } from "@/components/shared/CloudinaryImage";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_TAGLINE, THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
 import { BannerSlot } from "@/components/banners/BannerSlot";
+import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 import type { Article } from "@/types";
 
@@ -41,12 +43,14 @@ export async function HeroSection() {
                 Independent reviews and buyer-focused guides for Sage, Xero, QuickBooks, and the workflows UK small businesses run every month.
               </p>
               <div className="flex items-center gap-6 mt-8">
-                <Link
-                  href="#topics"
-                  className="inline-flex items-center justify-center rounded-xl px-6 py-3 bg-brand-accent text-white font-medium hover:bg-accent-hover transition-colors text-sm"
-                >
-                  Explore topics
-                </Link>
+                <Button asChild className="rounded-full px-6 py-7 text-lg font-bold">
+                  <Link href="#topics" className="flex items-center gap-2">
+                    Get Started <span className="opacity-70 mx-1">•</span> it's free
+                    <div className="ml-2 bg-white text-black rounded-full p-1.5 flex items-center justify-center shadow-sm">
+                      <ArrowRight className="w-4 h-4 stroke-[3]" />
+                    </div>
+                  </Link>
+                </Button>
                 <Link
                   href="/about"
                   className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"

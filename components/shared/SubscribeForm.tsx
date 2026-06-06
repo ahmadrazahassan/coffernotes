@@ -42,16 +42,14 @@ export function SubscribeForm({ compact = false }: { compact?: boolean }) {
         placeholder="Enter your email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className={`rounded-xl flex-1 ${compact ? "h-9 text-sm" : ""}`}
+        className={`rounded-full flex-1 bg-white/50 backdrop-blur-sm ${compact ? "h-9 text-sm px-4" : "h-[48px] px-6"}`}
         required
         suppressHydrationWarning
       />
       <Button
         type="submit"
         disabled={loading}
-        className={`rounded-xl bg-brand-accent text-white hover:bg-accent-hover ${
-          compact ? "h-9 text-sm px-4" : "px-6"
-        }`}
+        className={compact ? "h-9 text-sm px-4" : "h-[48px] px-8"}
       >
         {loading ? "..." : "Subscribe"}
       </Button>
