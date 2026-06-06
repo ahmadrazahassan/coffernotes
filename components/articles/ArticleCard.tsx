@@ -25,14 +25,14 @@ export function ArticleCard({ article }: ArticleCardProps) {
           width={600}
           height={340}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-          className="aspect-video object-cover w-full"
+          className="aspect-[4/3] object-cover w-full"
           crop={{
             type: 'auto',
             source: true
           }}
         />
       ) : (
-        <div className="aspect-video bg-surface w-full" />
+        <div className="aspect-[4/3] bg-surface w-full" />
       )}
       <div className="p-6">
         {(article.article_categories as any)?.[0]?.category && <CategoryPill name={(article.article_categories as any)[0].category.name} />}
