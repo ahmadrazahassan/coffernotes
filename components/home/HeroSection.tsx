@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CldImage } from "next-cloudinary";
+import { CloudinaryImage as CldImage } from "@/components/shared/CloudinaryImage";
 import { createClient } from "@/lib/supabase/server";
 import { SITE_TAGLINE, THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { CategoryPill } from "@/components/shared/CategoryPill";

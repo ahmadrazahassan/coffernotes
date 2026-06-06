@@ -1,6 +1,6 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
+import { CloudinaryImage as CldImage } from "@/components/shared/CloudinaryImage";
 import { CategoryPill } from "@/components/shared/CategoryPill";
 import { THUMBNAIL_IMAGE_QUALITY } from "@/lib/constants";
 import { ReadTimeBadge } from "@/components/shared/ReadTimeBadge";
