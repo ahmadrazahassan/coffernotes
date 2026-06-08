@@ -9,6 +9,7 @@ import { ClientVisibility } from "@/components/layout/ClientVisibility";
 import { BannerSlot } from "@/components/banners/BannerSlot";
 import { GlobalAnchorSlot } from "@/components/banners/GlobalAnchorSlot";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NewsletterPopup } from "@/components/shared/NewsletterPopup";
 import {
   SITE_META_DESCRIPTION,
   SITE_NAME,
@@ -150,6 +151,7 @@ export default async function RootLayout({
           <Footer />
         </ClientVisibility>
         <GlobalAnchorSlot />
+        <NewsletterPopup />
         <Analytics />
         <Toaster />
       </body>

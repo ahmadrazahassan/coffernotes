@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 
-export function SubscribeForm({ compact = false }: { compact?: boolean }) {
+export function SubscribeForm({ compact = false, onSuccess }: { compact?: boolean; onSuccess?: () => void }) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +31,9 @@ export function SubscribeForm({ compact = false }: { compact?: boolean }) {
     } else {
       toast.success("Subscribed! You'll hear from us when we publish.");
       setEmail("");
+      if (onSuccess) {
+        onSuccess();
+      }
     }
     setLoading(false);
   };
