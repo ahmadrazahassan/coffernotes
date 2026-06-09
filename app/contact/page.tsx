@@ -8,6 +8,13 @@ import {
 } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 import { LinkedInIcon } from "@/components/shared/LinkedInIcon";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
@@ -28,12 +35,6 @@ export default function ContactPage() {
       {/* Wrapper to give it that floating premium SaaS feel */}
       <div className="rounded-[2.5rem] border border-neutral-200/60 bg-white/70 backdrop-blur-xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.04)] grid grid-cols-1 lg:grid-cols-2 relative min-h-[750px]">
         
-        {/* Connection Arrow (Desktop Only) */}
-        <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center w-8 bg-white h-px">
-          <div className="w-full h-px bg-neutral-900 absolute"></div>
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-neutral-900 border-b-[4px] border-b-transparent"></div>
-        </div>
-
         {/* ── Left Side: Details ── */}
         <div className="p-10 lg:p-20 flex flex-col justify-between bg-white/50 text-neutral-950 relative z-10">
           <div>
@@ -75,9 +76,6 @@ export default function ContactPage() {
 
         {/* ── Right Side: Form ── */}
         <div className="bg-[#0a0e09] relative p-10 lg:p-20 flex flex-col justify-center overflow-hidden">
-          {/* Subtle top-right glow effect */}
-          <div className="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-[#0055ff]/15 blur-[100px] pointer-events-none"></div>
-
           <div className="relative z-10">
             <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Drop us a line</h2>
 
@@ -127,24 +125,17 @@ export default function ContactPage() {
                   <label htmlFor="subject" className="text-[13px] font-medium text-neutral-400 pl-5">
                     Subject
                   </label>
-                  <div className="relative">
-                    <select
-                      id="subject"
-                      defaultValue=""
-                      className="w-full appearance-none bg-white/[0.03] border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] focus:bg-white/[0.05] hover:border-white/20 transition-all cursor-pointer [&>option]:bg-neutral-900 [&>option]:text-white"
-                    >
-                      <option value="" disabled className="text-neutral-500">How can we help?</option>
-                      <option value="editorial">Editorial Corrections</option>
-                      <option value="partnership">Partnership Enquiries</option>
-                      <option value="methodology">Methodology Questions</option>
-                      <option value="support">General Support</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.5 4.5L6 8L9.5 4.5" stroke="#9ca3af" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
+                  <Select>
+                    <SelectTrigger className="w-full h-[52px] bg-white/[0.03] border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] focus:bg-white/[0.05] hover:border-white/20 transition-all cursor-pointer data-[state=open]:border-[#0055ff] data-[state=open]:ring-1 data-[state=open]:ring-[#0055ff]">
+                      <SelectValue placeholder="How can we help?" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-neutral-950 border border-neutral-800 rounded-[1.5rem] p-2 shadow-[0_8px_40px_rgba(0,0,0,0.5)] text-white">
+                      <SelectItem value="editorial" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Editorial Corrections</SelectItem>
+                      <SelectItem value="partnership" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Partnership Enquiries</SelectItem>
+                      <SelectItem value="methodology" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Methodology Questions</SelectItem>
+                      <SelectItem value="support" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">General Support</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
