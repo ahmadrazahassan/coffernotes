@@ -32,6 +32,7 @@ import {
 import { EditorBubbleMenu } from "./editor/EditorBubbleMenu";
 import { LinkPopover } from "./editor/LinkPopover";
 import { ImageInsertDialog } from "./editor/ImageInsertDialog";
+import { TableBubbleMenu } from "./editor/TableBubbleMenu";
 
 const extensions = [
   StarterKit.configure({
@@ -297,6 +298,9 @@ export function ArticleEditor({ content, onChange }: ArticleEditorProps) {
 
               {/* ── Bubble Menu (appears on text selection) ──── */}
               <EditorBubbleMenu editor={editor} />
+              
+              {/* ── Table Bubble Menu ──── */}
+              <TableBubbleMenu editor={editor} />
 
               {/* ── Image Insert Dialog ─────────────────────── */}
               <ImageInsertDialog

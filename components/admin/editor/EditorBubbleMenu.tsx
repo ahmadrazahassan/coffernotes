@@ -55,6 +55,13 @@ export function EditorBubbleMenu({ editor }: EditorBubbleMenuProps) {
   return (
     <BubbleMenu
       editor={editor}
+      shouldShow={({ editor, view, state, from, to }) => {
+        // Only show if there's an actual text selection
+        if (from === to) return false;
+        // Don't show the standard text menu if we are inside a table
+        if (editor.isActive("table")) return false;
+        return true;
+      }}
       options={{
         placement: "top",
         onHide: () => setShowLinkInput(false),

@@ -163,20 +163,33 @@
 .article-content table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.5rem 0;
-  font-size: 0.875rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .article-content th,
 .article-content td {
-  border: 1px solid var(--color-border, #E2E8F0);
-  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border, #E2E8F0);
+  padding: 1rem 1.25rem;
   text-align: left;
 }
 
 .article-content th {
   background: var(--color-surface);
   font-weight: 600;
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-border, #E2E8F0);
+}
+
+.article-content tr:last-child td {
+  border-bottom: none;
+}
+
+.article-content tr:hover td {
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
 .article-content blockquote {
@@ -292,3 +305,53 @@
   height: 0;
   pointer-events: none;
 }
+
+/* Tiptap Table Styles */
+.tiptap table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.tiptap table td,
+.tiptap table th {
+  min-width: 1em;
+  border: 1px solid var(--color-border, #E2E8F0);
+  padding: 0.75rem;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.tiptap table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: var(--color-surface);
+}
+
+.tiptap table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 85, 255, 0.1); /* Primary brand color with opacity */
+  pointer-events: none;
+}
+
+.tiptap table .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: -2px;
+  width: 4px;
+  background-color: var(--color-brand-accent);
+  pointer-events: none;
+}
+
