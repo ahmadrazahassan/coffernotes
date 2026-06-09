@@ -25,10 +25,6 @@ export function Footer() {
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
               {SITE_TAGLINE} Reviews and guides reference HMRC and GOV.UK where it matters, with accurate naming for Sage, Xero, and QuickBooks.
             </p>
-            <div className="flex items-center gap-2 mt-5 text-sm text-neutral-600">
-              <MapPin className="h-4 w-4 shrink-0 text-neutral-500" />
-              <span>London, United Kingdom</span>
-            </div>
           </div>
 
           <div className="lg:col-span-3">
@@ -99,10 +95,7 @@ export function Footer() {
                 <Mail className="h-4 w-4" />
                 {SITE_CONTACT_EMAIL}
               </a>
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
-                <MapPin className="h-4 w-4 shrink-0" />
-                <span>London, UK</span>
-              </div>
+
               <a
                 href="https://www.linkedin.com/in/me-abdulrehman-ch/"
                 target="_blank"
@@ -139,7 +132,7 @@ export function Footer() {
           <div className="border-t border-neutral-200 py-5">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-neutral-500">
-              &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved. London, United Kingdom.
+              &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
             </p>
             <p className="text-xs text-neutral-400">
               Independent accounting software reviews for UK businesses.

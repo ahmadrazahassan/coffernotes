@@ -57,18 +57,6 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <div>
-              <p className="text-sm font-semibold text-neutral-500 mb-1">Office</p>
-              <p className="text-lg lg:text-xl font-bold text-neutral-950 tracking-tight leading-snug max-w-[250px]">
-                London, United Kingdom
-              </p>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-1 mt-2 text-sm font-bold text-neutral-950 hover:underline decoration-neutral-300 underline-offset-4"
-              >
-                See our story <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
 
             <div>
               <p className="text-sm font-semibold text-neutral-500 mb-1">Founder</p>
