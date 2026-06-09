@@ -86,99 +86,84 @@ export default function ContactPage() {
         </div>
 
         {/* ── Right Side: Form ── */}
-        <div className="bg-[#1C1C1C] p-10 lg:p-20 text-white flex flex-col justify-center">
-          <h2 className="text-2xl font-bold tracking-tight text-white mb-10">Contact</h2>
+        <div className="bg-neutral-950 p-10 lg:p-16 flex flex-col justify-center">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-8">Drop us a line</h2>
 
-          <form className="space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
-              <div className="group relative">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-[13px] font-medium text-neutral-400 pl-5">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
-                  placeholder=" "
-                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                  placeholder="John Doe"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-full px-6 py-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] transition-all"
                 />
-                <label
-                  htmlFor="name"
-                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
-                >
-                  Name
-                </label>
               </div>
 
               {/* Email */}
-              <div className="group relative">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-[13px] font-medium text-neutral-400 pl-5">
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
-                  placeholder=" "
-                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                  placeholder="john@example.com"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-full px-6 py-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] transition-all"
                 />
-                <label
-                  htmlFor="email"
-                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
-                >
-                  Email
-                </label>
               </div>
 
               {/* Phone */}
-              <div className="group relative">
+              <div className="space-y-2">
+                <label htmlFor="phone" className="text-[13px] font-medium text-neutral-400 pl-5">
+                  Phone (Optional)
+                </label>
                 <input
                   type="tel"
                   id="phone"
-                  placeholder=" "
-                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                  placeholder="+44 20 7123 4567"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-full px-6 py-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] transition-all"
                 />
-                <label
-                  htmlFor="phone"
-                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
-                >
-                  Phone
-                </label>
               </div>
 
               {/* Subject */}
-              <div className="group relative">
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-[13px] font-medium text-neutral-400 pl-5">
+                  Subject
+                </label>
                 <input
                   type="text"
                   id="subject"
-                  placeholder=" "
-                  className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
+                  placeholder="How can we help?"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-full px-6 py-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] transition-all"
                 />
-                <label
-                  htmlFor="subject"
-                  className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
-                >
-                  Subject
-                </label>
               </div>
             </div>
 
             {/* Interest Area */}
-            <div className="group relative">
-              <input
-                type="text"
-                id="interest"
-                placeholder=" "
-                className="peer w-full bg-transparent border-b border-neutral-700 py-3 text-sm text-white focus:outline-none focus:border-[#E8FF00] transition-colors placeholder-transparent"
-              />
-              <label
-                htmlFor="interest"
-                className="absolute left-0 -top-3.5 text-[11px] font-medium text-neutral-400 uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-[11px] peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[#E8FF00]"
-              >
-                Tell us about your interested in
+            <div className="space-y-2 pt-2">
+              <label htmlFor="interest" className="text-[13px] font-medium text-neutral-400 pl-5">
+                Tell us what you're interested in
               </label>
+              <textarea
+                id="interest"
+                placeholder="I'm looking for advice on..."
+                rows={4}
+                className="w-full bg-neutral-900 border border-neutral-800 rounded-3xl px-6 py-4 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#0055ff] focus:ring-1 focus:ring-[#0055ff] transition-all resize-none"
+              />
             </div>
 
             {/* Submit Button */}
-            <div className="pt-2">
+            <div className="pt-4">
               <button
                 type="button"
-                className="w-full bg-[#E8FF00] text-neutral-950 font-bold py-4 px-8 text-sm hover:bg-[#D7ED00] transition-colors focus:ring-4 focus:ring-[#E8FF00]/20 outline-none"
+                className="w-full bg-[#0055ff] text-white font-bold py-4 px-8 rounded-full text-sm hover:bg-[#0044cc] hover:shadow-lg hover:shadow-[#0055ff]/20 transition-all focus:ring-4 focus:ring-[#0055ff]/20 outline-none"
               >
-                Send to us
+                Send Message
               </button>
             </div>
           </form>
