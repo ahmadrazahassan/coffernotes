@@ -130,10 +130,10 @@ export default function ContactPage() {
                       <SelectValue placeholder="How can we help?" />
                     </SelectTrigger>
                     <SelectContent className="bg-neutral-950 border border-neutral-800 rounded-[1.5rem] p-2 shadow-[0_8px_40px_rgba(0,0,0,0.5)] text-white">
-                      <SelectItem value="editorial" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Editorial Corrections</SelectItem>
-                      <SelectItem value="partnership" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Partnership Enquiries</SelectItem>
-                      <SelectItem value="methodology" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">Methodology Questions</SelectItem>
-                      <SelectItem value="support" className="rounded-xl cursor-pointer py-3 hover:bg-white/[0.05] focus:bg-white/[0.05] focus:text-white transition-colors">General Support</SelectItem>
+                      <SelectItem value="editorial" className="rounded-xl cursor-pointer py-3 !text-white focus:!bg-white/[0.08] hover:!bg-white/[0.08] focus:!text-white hover:!text-white transition-colors">Editorial Corrections</SelectItem>
+                      <SelectItem value="partnership" className="rounded-xl cursor-pointer py-3 !text-white focus:!bg-white/[0.08] hover:!bg-white/[0.08] focus:!text-white hover:!text-white transition-colors">Partnership Enquiries</SelectItem>
+                      <SelectItem value="methodology" className="rounded-xl cursor-pointer py-3 !text-white focus:!bg-white/[0.08] hover:!bg-white/[0.08] focus:!text-white hover:!text-white transition-colors">Methodology Questions</SelectItem>
+                      <SelectItem value="support" className="rounded-xl cursor-pointer py-3 !text-white focus:!bg-white/[0.08] hover:!bg-white/[0.08] focus:!text-white hover:!text-white transition-colors">General Support</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
