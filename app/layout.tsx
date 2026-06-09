@@ -71,10 +71,7 @@ export const metadata: Metadata = {
     description: SITE_META_DESCRIPTION,
     images: ["/icon-512.png"],
   },
-  // Impact site verification (Sage UK / impact.com) — homepage <head>
-  other: {
-    "impact-site-verification": "9bf10a47-235f-4f19-867d-c6aeabc2a6bc",
-  },
+
 };
 
 export default async function RootLayout({
@@ -127,10 +124,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body className={`${nunitoSans.variable} ${openSans.variable} font-sans antialiased`}>
-        {/* Impact site verification — first body section for verifier crawl */}
-        <span className="sr-only" aria-hidden="true">
-          Impact-Site-Verification: 9bf10a47-235f-4f19-867d-c6aeabc2a6bc
-        </span>
+
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <BannerSlot
