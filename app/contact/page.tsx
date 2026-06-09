@@ -7,6 +7,7 @@ import {
   SITE_URL_FALLBACK,
 } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
+import { LinkedInIcon } from "@/components/shared/LinkedInIcon";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL_FALLBACK;
 
@@ -67,6 +68,19 @@ export default function ContactPage() {
               >
                 See our story <ArrowRight className="w-4 h-4" />
               </Link>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-neutral-500 mb-1">Founder</p>
+              <a
+                href="https://www.linkedin.com/in/me-abdulrehman-ch/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-lg lg:text-xl font-bold text-[#0077b5] hover:text-[#006097] transition-colors tracking-tight"
+              >
+                <LinkedInIcon className="w-5 h-5" />
+                Abdul Rehman ch.
+              </a>
             </div>
           </div>
         </div>

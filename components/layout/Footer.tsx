@@ -9,6 +9,7 @@ import {
 } from "@/lib/constants";
 import { SubscribeForm } from "@/components/shared/SubscribeForm";
 import { Mail, MapPin } from "lucide-react";
+import { LinkedInIcon } from "@/components/shared/LinkedInIcon";
 
 export function Footer() {
   return (
@@ -102,6 +103,16 @@ export function Footer() {
                 <MapPin className="h-4 w-4 shrink-0" />
                 <span>London, UK</span>
               </div>
+              <a
+                href="https://www.linkedin.com/in/me-abdulrehman-ch/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[#0077b5] hover:text-[#006097]"
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon className="h-4 w-4" />
+                Abdul Rehman ch.
+              </a>
               <p className="text-sm leading-relaxed text-neutral-600">
                 Editorial corrections, compliance questions, or partnership enquiries — see our contact page or email the desk.
               </p>

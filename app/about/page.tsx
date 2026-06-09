@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Info, UserCircle2, Target } from "lucide-react";
+import { LinkedInIcon } from "@/components/shared/LinkedInIcon";
 import {
   SITE_META_DESCRIPTION,
   SITE_NAME,
@@ -68,6 +69,18 @@ export default function AboutPage() {
               <br /><br />
               Fuelled by a passion for financial clarity, my team and I have a deep desire to excel in simplifying everything from Sage and Xero setups to strict HMRC compliance.
             </p>
+
+            <div className="mt-8">
+              <a
+                href="https://www.linkedin.com/in/me-abdulrehman-ch/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0077b5] text-white hover:bg-[#006097] transition-colors font-medium text-sm shadow-sm hover:shadow-md"
+              >
+                <LinkedInIcon className="w-4 h-4 text-white" />
+                Connect on LinkedIn
+              </a>
+            </div>
           </div>
           
           {/* Right minimal visual or space */}
