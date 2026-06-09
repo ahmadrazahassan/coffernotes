@@ -71,7 +71,9 @@ export const metadata: Metadata = {
     description: SITE_META_DESCRIPTION,
     images: ["/icon-512.png"],
   },
-
+  other: {
+    "impact-site-verification": "e83dd08e-8c26-46ac-ada0-886e275fc12b",
+  },
 };
 
 export default async function RootLayout({
