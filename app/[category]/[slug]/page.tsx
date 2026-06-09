@@ -88,14 +88,14 @@ export default async function ArticlePage({ params }: Props) {
     // For simplicity, we can fetch recently published articles and filter those that share a category
     const { data: recentArticles } = await supabase
       .from("articles")
-      .select("*, article_categories(category_id)")
+      .select("*, article_categories(category:categories(*))")
       .eq("status", "published")
       .neq("id", article.id)
       .order("published_at", { ascending: false })
       .limit(20);
 
     const relatedFiltered = (recentArticles as any[])?.filter((a) =>
-      a.article_categories?.some((ac: any) => catIds.includes(ac.category_id))
+      a.article_categories?.some((ac: any) => catIds.includes(ac.category?.id))
     ) || [];
 
     related = relatedFiltered.slice(0, 3) as Article[];
